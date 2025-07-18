@@ -95,16 +95,18 @@ const Index = () => {
               {selectedPlayer === "twitch" ? (
                 <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={false} />
               ) : (
-                <iframe
-                  src={playerUrls[selectedPlayer as keyof typeof playerUrls]}
-                  allowFullScreen
-                  className="absolute top-0 left-0 w-full h-full border-0"
-                  title="Featured Stream"
-                ></iframe>
+                <>
+                  <iframe
+                    src={playerUrls[selectedPlayer as keyof typeof playerUrls]}
+                    allowFullScreen
+                    className="absolute top-0 left-0 w-full h-full border-0"
+                    title="Featured Stream"
+                  ></iframe>
+                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
+                    Здесь будет встроенный плеер {selectedPlayer.charAt(0).toUpperCase() + selectedPlayer.slice(1)}
+                  </div>
+                </>
               )}
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
-                {selectedPlayer === "twitch" ? "Плеер Twitch" : `Здесь будет встроенный плеер ${selectedPlayer.charAt(0).toUpperCase() + selectedPlayer.slice(1)}`}
-              </div>
             </div>
             <div className="mt-4 text-center">
               {selectedPlayer === "twitch" && (
