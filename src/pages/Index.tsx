@@ -7,14 +7,15 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import DonationWidget from "@/components/DonationWidget";
-import TwitchChatEmbed from "@/components/TwitchChatEmbed"; // Import the new component
+import TwitchChatEmbed from "@/components/TwitchChatEmbed";
+import TwitchPlayerEmbed from "@/components/TwitchPlayerEmbed"; // Import the new player component
 
 const Index = () => {
   const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
   const [isTheaterMode, setIsTheaterMode] = useState(false); // New state for theater mode
 
   const playerUrls = {
-    twitch: "https://player.twitch.tv/?channel=hellisium&parent=localhost&autoplay=false", // Example Twitch channel
+    // Twitch player URL is now handled by TwitchPlayerEmbed component
     youtube: "https://www.youtube.com/embed/your_youtube_stream_id?autoplay=0", // Example YouTube stream
     goodgame: "https://goodgame.ru/player?id=your_goodgame_channel_id&autoplay=0", // Example GoodGame channel
   };
@@ -50,7 +51,8 @@ const Index = () => {
             onClick={() => setIsTheaterMode(!isTheaterMode)}
             className="text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10 flex items-center gap-2"
           >
-            {isTheaterMode ? <Minimize2 className="h-5 w-5" /> : "Режим кинотеатра"}
+            {isTheaterMode ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
+            {isTheaterMode ? "Выйти из режима кинотеатра" : "Режим кинотеатра"}
           </Button>
           <a href="https://www.donationalerts.com/r/hellisium" target="_blank" rel="noopener noreferrer">
             <Button size="lg" variant="outline" className="text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10">
@@ -90,14 +92,18 @@ const Index = () => {
               </Button>
             </div>
             <div className="relative w-full pt-[56.25%] bg-muted rounded-lg overflow-hidden">
-              <iframe
-                src={playerUrls[selectedPlayer as keyof typeof playerUrls]}
-                allowFullScreen
-                className="absolute top-0 left-0 w-full h-full border-0"
-                title="Featured Stream"
-              ></iframe>
+              {selectedPlayer === "twitch" ? (
+                <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={false} />
+              ) : (
+                <iframe
+                  src={playerUrls[selectedPlayer as keyof typeof playerUrls]}
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full border-0"
+                  title="Featured Stream"
+                ></iframe>
+              )}
               <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
-                Здесь будет встроенный плеер {selectedPlayer.charAt(0).toUpperCase() + selectedPlayer.slice(1)}
+                {selectedPlayer === "twitch" ? "Плеер Twitch" : `Здесь будет встроенный плеер ${selectedPlayer.charAt(0).toUpperCase() + selectedPlayer.slice(1)}`}
               </div>
             </div>
             <div className="mt-4 text-center">
@@ -137,7 +143,6 @@ const Index = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {/* Changed height to a fixed value for better chat display */}
             <div className="relative w-full h-[600px] bg-muted rounded-lg overflow-hidden">
               <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
             </div>
