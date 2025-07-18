@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { BellRing, Maximize2, Minimize2 } from "lucide-react";
 import DonationWidget from "@/components/DonationWidget";
-import StreamChat from "@/components/StreamChat";
+// Removed StreamChat import
 
 const Index = () => {
   const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
@@ -24,6 +24,14 @@ const Index = () => {
     twitch: "https://www.twitch.tv/hellisium",
     youtube: "https://www.youtube.com/your_youtube_stream_id", // Replace with actual YouTube channel URL
     goodgame: "https://goodgame.ru/channel/your_goodgame_channel_id", // Replace with actual GoodGame channel URL
+  };
+
+  // URLs for opening chat in a new window/tab (moved from StreamChat.tsx)
+  const popoutChatUrls = {
+    twitch: "https://www.twitch.tv/popout/hellisium/chat",
+    youtube: "https://www.youtube.com/live_chat?v=your_youtube_stream_id&is_popout=1", // Requires actual YouTube video ID
+    goodgame: "https://goodgame.ru/chat/hellisium/", // Same as embed, but direct open might work better
+    vkvideo: "https://live.vkvideo.ru/hellisium/chat", // Same as embed, might not have a dedicated popout
   };
 
   return (
@@ -59,7 +67,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className={`w-full mx-auto grid grid-cols-1 gap-8 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-2 lg:max-w-5xl'}`}>
+      <div className={`w-full mx-auto grid grid-cols-1 gap-8 mb-12 ${isTheaterMode ? 'lg:grid-cols-1 lg:max-w-full' : 'lg:grid-cols-1 lg:max-w-5xl'}`}> {/* Changed grid layout as chat is removed */}
         {/* Player Card */}
         <Card className="w-full bg-card text-card-foreground shadow-xl p-6">
           <CardHeader className="pb-4">
@@ -125,11 +133,35 @@ const Index = () => {
                 </a>
               </p>
             </div>
+
+            {/* Chat Links Section */}
+            <div className="mt-8 pt-4 border-t border-border">
+              <h3 className="text-2xl font-bold mb-4 text-primary-foreground text-center">
+                Общение в чате
+              </h3>
+              <p className="text-muted-foreground text-center mb-4">
+                Для полноценного участия в чате, пожалуйста, откройте его в новом окне:
+              </p>
+              <div className="flex justify-center gap-4 flex-wrap">
+                <a href={popoutChatUrls.twitch} target="_blank" rel="noopener noreferrer">
+                  <Button variant="secondary">Twitch Чат</Button>
+                </a>
+                <a href={popoutChatUrls.youtube} target="_blank" rel="noopener noreferrer">
+                  <Button variant="secondary">YouTube Чат</Button>
+                </a>
+                <a href={popoutChatUrls.goodgame} target="_blank" rel="noopener noreferrer">
+                  <Button variant="secondary">GoodGame Чат</Button>
+                </a>
+                <a href={popoutChatUrls.vkvideo} target="_blank" rel="noopener noreferrer">
+                  <Button variant="secondary">VK Video Чат</Button>
+                </a>
+              </div>
+              <p className="text-sm text-muted-foreground mt-4 text-center">
+                Для YouTube чата может потребоваться ID конкретного стрима.
+              </p>
+            </div>
           </CardContent>
         </Card>
-
-        {/* Stream Chat */}
-        <StreamChat />
       </div>
 
       <div className="w-full max-w-4xl mx-auto grid md:grid-cols-2 gap-6 text-center mt-12">
