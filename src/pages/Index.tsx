@@ -65,11 +65,7 @@ const Index = () => {
       <div className={`w-full mx-auto grid grid-cols-1 gap-8 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'}`}>
         {/* Player Card */}
         <Card className="w-full bg-card text-card-foreground shadow-xl p-6">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-3xl font-bold text-center text-primary-foreground">
-              Последний стрим / Избранное видео
-            </CardTitle>
-          </CardHeader>
+          {/* Removed CardHeader */}
           <CardContent>
             <div className="flex justify-center gap-4 mb-6 flex-wrap">
               <Button
@@ -91,8 +87,8 @@ const Index = () => {
                 GoodGame.ru
               </Button>
             </div>
-            {/* Changed pt-[56.25%] to fixed height h-[450px] for better player rendering */}
-            <div className="relative w-full h-[450px] bg-muted rounded-lg overflow-hidden">
+            {/* Increased height to h-[500px] */}
+            <div className="relative w-full h-[500px] bg-muted rounded-lg overflow-hidden">
               {selectedPlayer === "twitch" ? (
                 <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={false} />
               ) : (
@@ -140,13 +136,10 @@ const Index = () => {
 
         {/* Twitch Chat Card using TwitchChatEmbed component */}
         <Card className="w-full bg-card text-card-foreground shadow-xl p-6">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-3xl font-bold text-center text-primary-foreground">
-              Чат Twitch
-            </CardTitle>
-          </CardHeader>
+          {/* Removed CardHeader */}
           <CardContent>
-            <div className="relative w-full h-[600px] bg-muted rounded-lg overflow-hidden">
+            {/* Increased height to h-[650px] */}
+            <div className="relative w-full h-[650px] bg-muted rounded-lg overflow-hidden">
               <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
             </div>
             <div className="mt-4 text-center">
