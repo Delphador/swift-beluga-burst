@@ -3,7 +3,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Info, HandRight, AlertTriangle } from "lucide-react"; // Added new icons
+import { Info, ArrowRight, AlertTriangle } from "lucide-react"; // Changed HandRight to ArrowRight
 
 const CommunityRules = () => {
   const rules = [
@@ -26,16 +26,16 @@ const CommunityRules = () => {
             <p className="mb-4">
               Чтобы наше сообщество оставалось приятным и дружелюбным местом для всех, пожалуйста, ознакомьтесь с нашими правилами:
             </p>
-            <ol className="list-decimal list-inside space-y-3"> {/* Changed to ordered list */}
+            <ol className="list-decimal list-inside space-y-3">
               {rules.map((rule, index) => (
                 <li key={index} className="flex items-start gap-2">
-                  <HandRight className="h-5 w-5 text-primary flex-shrink-0 mt-1" /> {/* Added icon */}
+                  <ArrowRight className="h-5 w-5 text-primary flex-shrink-0 mt-1" /> {/* Changed HandRight to ArrowRight */}
                   <span>{rule}</span>
                 </li>
               ))}
             </ol>
             <Alert className="mt-6 bg-accent text-accent-foreground">
-              <AlertTriangle className="h-4 w-4" /> {/* Changed icon to AlertTriangle */}
+              <AlertTriangle className="h-4 w-4" />
               <AlertTitle>Нарушения и апелляции</AlertTitle>
               <AlertDescription>
                 Нарушение правил может привести к предупреждению, временному или постоянному бану. Если вы считаете, что были забанены несправедливо, пожалуйста, свяжитесь с модераторами или HeLLisiuM через раздел "Контакты".

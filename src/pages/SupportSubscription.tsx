@@ -3,8 +3,8 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Gem, Rocket, Crown } from "lucide-react"; // Added new icons
-import { Progress } from "@/components/ui/progress"; // Import Progress component
+import { CheckCircle2, Gem, Rocket, Crown, Twitch } from "lucide-react"; // Added Twitch icon
+import { Progress } from "@/components/ui/progress";
 
 const SupportSubscription = () => {
   const monthlyGoal = {
