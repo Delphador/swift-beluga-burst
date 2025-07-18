@@ -29,9 +29,11 @@ const DonationWidget = () => {
         ) : (
           <p className="text-muted-foreground">Пока нет недавних донатов.</p>
         )}
-        <Button className="w-full mt-4 bg-primary hover:bg-primary/90">
-          Поддержать
-        </Button>
+        <a href="https://www.donationalerts.com/r/hellisium" target="_blank" rel="noopener noreferrer">
+          <Button className="w-full mt-4 bg-primary hover:bg-primary/90">
+            Поддержать
+          </Button>
+        </a>
       </CardContent>
     </Card>
   );
