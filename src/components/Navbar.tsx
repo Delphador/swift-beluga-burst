@@ -9,7 +9,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 const navLinks = [
   { name: "Главная", path: "/", icon: <Gamepad className="h-5 w-5" /> },
-  { name: "О HeLLisiuM", path: "/about", icon: <User className="h-5 w-5" /> }, {/* Changed 'Об HeLLisiuM' to 'О HeLLisiuM' */}
+  { name: "О HeLLisiuM", path: "/about", icon: <User className="h-5 w-5" /> },
   { name: "Расписание", path: "/schedule", icon: <Calendar className="h-5 w-5" /> },
   { name: "Правила", path: "/rules", icon: <ScrollText className="h-5 w-5" /> },
   { name: "Сетап", path: "/setup", icon: <Monitor className="h-5 w-5" /> },
