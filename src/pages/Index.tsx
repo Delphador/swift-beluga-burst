@@ -9,6 +9,7 @@ import { Maximize2, Minimize2 } from "lucide-react";
 import DonationWidget from "@/components/DonationWidget";
 import TwitchChatEmbed from "@/components/TwitchChatEmbed";
 import TwitchPlayerEmbed from "@/components/TwitchPlayerEmbed"; // Import the new player component
+import { cn } from "@/lib/utils"; // Import cn utility
 
 const Index = () => {
   const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
@@ -59,13 +60,16 @@ const Index = () => {
         size="lg"
         variant="outline"
         onClick={() => setIsTheaterMode(!isTheaterMode)}
-        className={`text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10 flex items-center gap-2 ${isTheaterMode ? 'absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm' : 'mb-12'}`}
+        className={cn(
+          "text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10 flex items-center gap-2",
+          isTheaterMode ? 'absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm' : 'mb-12'
+        )}
       >
         {isTheaterMode ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
         {isTheaterMode ? "Выйти из режима кинотеатра" : "Режим кинотеатра"}
       </Button>
 
-      <div className={`w-full mx-auto grid grid-cols-1 ${isTheaterMode ? 'gap-0 h-screen' : 'gap-4 mb-12'} ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'}`}>
+      <div className={`w-full mx-auto grid grid-cols-1 gap-4 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'}`}>
         {/* Player */}
         {isTheaterMode ? (
           <div className="relative w-full h-full bg-muted rounded-none overflow-hidden">
