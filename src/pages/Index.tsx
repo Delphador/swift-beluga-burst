@@ -4,7 +4,13 @@ import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import React, { useState } => {
+import React, { useState } from "react"; // Fixed import syntax
+import { Maximize2, Minimize2 } from "lucide-react";
+import DonationWidget from "@/components/DonationWidget";
+import TwitchChatEmbed from "@/components/TwitchChatEmbed";
+import TwitchPlayerEmbed from "@/components/TwitchPlayerEmbed"; // Import the new player component
+
+const Index = () => {
   const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
   const [isTheaterMode, setIsTheaterMode] = useState(false); // New state for theater mode
 
@@ -56,9 +62,9 @@ import React, { useState } => {
         </div>
       </div>
 
-      <div className={`w-full mx-auto grid grid-cols-1 gap-4 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'}`}> {/* Changed gap-8 to gap-4 */}
+      <div className={`w-full mx-auto grid grid-cols-1 gap-4 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'}`}>
         {/* Player Card */}
-        <Card className="w-full bg-card text-card-foreground shadow-xl p-4"> {/* Changed p-6 to p-4 */}
+        <Card className="w-full bg-card text-card-foreground shadow-xl p-4">
           {/* Removed CardHeader */}
           <CardContent>
             <div className="flex justify-center gap-4 mb-6 flex-wrap">
@@ -129,7 +135,7 @@ import React, { useState } => {
         </Card>
 
         {/* Twitch Chat Card using TwitchChatEmbed component */}
-        <Card className="w-full bg-card text-card-foreground shadow-xl p-4"> {/* Changed p-6 to p-4 */}
+        <Card className="w-full bg-card text-card-foreground shadow-xl p-4">
           {/* Removed CardHeader */}
           <CardContent>
             {/* Increased height to h-[670px] */}

@@ -16,7 +16,7 @@ const TwitchChatEmbed: React.FC<TwitchChatEmbedProps> = ({ channel, parent }) =>
         parent={parent}
         width="100%"
         height="100%"
-        theme="dark" // Можно настроить тему, если нужно
+        // theme="dark" // Removed unsupported 'theme' prop
         id={`twitch-chat-${channel}`}
       />
     </div>
