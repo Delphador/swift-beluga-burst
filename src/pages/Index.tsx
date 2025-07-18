@@ -31,6 +31,12 @@ const Index = () => {
   // URL for opening Twitch chat in a new window/tab
   const twitchPopoutChatUrl = "https://www.twitch.tv/popout/hellisium/chat";
 
+  // Define button classes using cn utility
+  const theaterModeButtonClasses = cn(
+    "text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10 flex items-center gap-2",
+    isTheaterMode ? 'absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm' : 'mb-12'
+  );
+
   return (
     <div className={`flex flex-col items-center justify-center ${isTheaterMode ? 'min-h-screen p-0' : 'min-h-[calc(100vh-160px)] bg-background text-foreground p-8'}`}>
       {!isTheaterMode && (
@@ -60,10 +66,7 @@ const Index = () => {
         size="lg"
         variant="outline"
         onClick={() => setIsTheaterMode(!isTheaterMode)}
-        className={cn(
-          "text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10 flex items-center gap-2",
-          isTheaterMode ? 'absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm' : 'mb-12'
-        )}
+        className={theaterModeButtonClasses}
       >
         {isTheaterMode ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
         {isTheaterMode ? "Выйти из режима кинотеатра" : "Режим кинотеатра"}
@@ -97,12 +100,14 @@ const Index = () => {
                 <Button
                   variant={selectedPlayer === "youtube" ? "default" : "outline"}
                   onClick={() => setSelectedPlayer("youtube")}
+                  disabled // Disable YouTube button for now as it's a placeholder
                 >
                   YouTube
                 </Button>
                 <Button
                   variant={selectedPlayer === "goodgame" ? "default" : "outline"}
                   onClick={() => setSelectedPlayer("goodgame")}
+                  disabled // Disable GoodGame button for now as it's a placeholder
                 >
                   GoodGame.ru
                 </Button>
