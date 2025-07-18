@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import DonationWidget from "@/components/DonationWidget";
+import TwitchChatEmbed from "@/components/TwitchChatEmbed"; // Import the new component
 
 const Index = () => {
   const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
@@ -28,8 +29,8 @@ const Index = () => {
   // URL for opening Twitch chat in a new window/tab
   const twitchPopoutChatUrl = "https://www.twitch.tv/popout/hellisium/chat";
 
-  // Twitch chat embed URL provided by the user - CHANGED PARENT TO LOCALHOST FOR LOCAL TESTING
-  const twitchChatEmbedUrl = "https://www.twitch.tv/embed/hellisium/chat?parent=localhost"; // Changed from hellisium.pro
+  // Twitch chat embed URL (now handled by TwitchChatEmbed component)
+  // const twitchChatEmbedUrl = "https://www.twitch.tv/embed/hellisium/chat?parent=localhost";
 
   return (
     <div className="min-h-[calc(100vh-160px)] flex flex-col items-center justify-center bg-background text-foreground p-8">
@@ -132,7 +133,7 @@ const Index = () => {
           </CardContent>
         </Card>
 
-        {/* Twitch Chat Card */}
+        {/* Twitch Chat Card using TwitchChatEmbed component */}
         <Card className="w-full bg-card text-card-foreground shadow-xl p-6">
           <CardHeader className="pb-4">
             <CardTitle className="text-3xl font-bold text-center text-primary-foreground">
@@ -140,17 +141,8 @@ const Index = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="relative w-full pt-[150%] md:pt-[56.25%] bg-muted rounded-lg overflow-hidden"> {/* Adjusted aspect ratio for chat */}
-              <iframe
-                src={twitchChatEmbedUrl}
-                allowFullScreen
-                className="absolute top-0 left-0 w-full h-full border-0"
-                title="Twitch Chat"
-                allow="autoplay; fullscreen; clipboard-write" // Added allow attribute
-              ></iframe>
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
-                Чат Twitch
-              </div>
+            <div className="relative w-full pt-[150%] md:pt-[56.25%] bg-muted rounded-lg overflow-hidden">
+              <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
             </div>
             <div className="mt-4 text-center">
               <a href={twitchPopoutChatUrl} target="_blank" rel="noopener noreferrer">
