@@ -28,8 +28,8 @@ const Index = () => {
   // URL for opening Twitch chat in a new window/tab
   const twitchPopoutChatUrl = "https://www.twitch.tv/popout/hellisium/chat";
 
-  // Twitch chat embed URL provided by the user
-  const twitchChatEmbedUrl = "https://www.twitch.tv/embed/hellisium/chat?parent=hellisium.pro";
+  // Twitch chat embed URL provided by the user - CHANGED PARENT TO LOCALHOST FOR LOCAL TESTING
+  const twitchChatEmbedUrl = "https://www.twitch.tv/embed/hellisium/chat?parent=localhost"; // Changed from hellisium.pro
 
   return (
     <div className="min-h-[calc(100vh-160px)] flex flex-col items-center justify-center bg-background text-foreground p-8">
