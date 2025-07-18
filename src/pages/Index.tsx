@@ -4,13 +4,7 @@ import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
-import { Maximize2, Minimize2 } from "lucide-react";
-import DonationWidget from "@/components/DonationWidget";
-import TwitchChatEmbed from "@/components/TwitchChatEmbed";
-import TwitchPlayerEmbed from "@/components/TwitchPlayerEmbed"; // Import the new player component
-
-const Index = () => {
+import React, { useState } => {
   const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
   const [isTheaterMode, setIsTheaterMode] = useState(false); // New state for theater mode
 
@@ -62,9 +56,9 @@ const Index = () => {
         </div>
       </div>
 
-      <div className={`w-full mx-auto grid grid-cols-1 gap-8 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'}`}>
+      <div className={`w-full mx-auto grid grid-cols-1 gap-4 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'}`}> {/* Changed gap-8 to gap-4 */}
         {/* Player Card */}
-        <Card className="w-full bg-card text-card-foreground shadow-xl p-6">
+        <Card className="w-full bg-card text-card-foreground shadow-xl p-4"> {/* Changed p-6 to p-4 */}
           {/* Removed CardHeader */}
           <CardContent>
             <div className="flex justify-center gap-4 mb-6 flex-wrap">
@@ -87,8 +81,8 @@ const Index = () => {
                 GoodGame.ru
               </Button>
             </div>
-            {/* Increased height to h-[500px] */}
-            <div className="relative w-full h-[500px] bg-muted rounded-lg overflow-hidden">
+            {/* Increased height to h-[520px] */}
+            <div className="relative w-full h-[520px] bg-muted rounded-lg overflow-hidden">
               {selectedPlayer === "twitch" ? (
                 <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={false} />
               ) : (
@@ -135,11 +129,11 @@ const Index = () => {
         </Card>
 
         {/* Twitch Chat Card using TwitchChatEmbed component */}
-        <Card className="w-full bg-card text-card-foreground shadow-xl p-6">
+        <Card className="w-full bg-card text-card-foreground shadow-xl p-4"> {/* Changed p-6 to p-4 */}
           {/* Removed CardHeader */}
           <CardContent>
-            {/* Increased height to h-[650px] */}
-            <div className="relative w-full h-[650px] bg-muted rounded-lg overflow-hidden">
+            {/* Increased height to h-[670px] */}
+            <div className="relative w-full h-[670px] bg-muted rounded-lg overflow-hidden">
               <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
             </div>
             <div className="mt-4 text-center">
