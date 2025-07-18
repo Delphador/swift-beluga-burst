@@ -146,6 +146,7 @@ const Index = () => {
                 allowFullScreen
                 className="absolute top-0 left-0 w-full h-full border-0"
                 title="Twitch Chat"
+                allow="autoplay; fullscreen; clipboard-write" // Added allow attribute
               ></iframe>
               <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
                 Чат Twitch
