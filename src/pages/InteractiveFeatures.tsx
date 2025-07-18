@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Lightbulb, Mouse, Keyboard, Monitor, Image } from "lucide-react";
+import { Lightbulb, Mouse, Keyboard, Monitor, Image, HelpCircle } from "lucide-react"; // Added HelpCircle icon
 import { Button } from "@/components/ui/button";
 
 const interactiveFeatures = [
@@ -41,7 +41,7 @@ const interactiveFeatures = [
 const InteractiveFeatures = () => {
   return (
     <div className="container mx-auto p-8 min-h-[calc(100vh-160px)]">
-      <h1 className="text-4xl font-bold text-center mb-10 text-foreground">Интерактивные фишки</h1> {/* Changed text-primary-foreground to text-foreground */}
+      <h1 className="text-4xl font-bold text-center mb-10 text-foreground">Интерактивные фишки</h1>
       <p className="text-xl text-center text-muted-foreground mb-12">
         Сделайте стрим еще веселее! Эти фишки позволяют вам влиять на игровой процесс и реакции Андрея.
       </p>
@@ -63,6 +63,19 @@ const InteractiveFeatures = () => {
           </Card>
         ))}
       </div>
+
+      <div className="mt-16 text-center">
+        <h2 className="text-3xl font-bold mb-6 text-primary-foreground flex items-center justify-center gap-3">
+          <HelpCircle className="h-8 w-8" /> Как это работает?
+        </h2>
+        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          Интерактивные фишки активируются через специальные сервисы, которые синхронизируются с моей трансляцией. Вы можете использовать баллы канала или донаты для активации этих эффектов и влиять на происходящее в прямом эфире!
+        </p>
+        <div className="w-full max-w-3xl mx-auto h-64 bg-muted rounded-lg flex items-center justify-center text-muted-foreground text-xl border border-border shadow-md">
+          [Место для видеоклипа, объясняющего, как работают фишки]
+        </div>
+      </div>
+
       <div className="mt-12 text-center">
         <p className="text-lg text-muted-foreground">
           Следите за стримами, чтобы узнать о новых интерактивных возможностях!
