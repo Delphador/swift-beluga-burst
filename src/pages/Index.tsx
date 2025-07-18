@@ -29,9 +29,6 @@ const Index = () => {
   // URL for opening Twitch chat in a new window/tab
   const twitchPopoutChatUrl = "https://www.twitch.tv/popout/hellisium/chat";
 
-  // Twitch chat embed URL (now handled by TwitchChatEmbed component)
-  // const twitchChatEmbedUrl = "https://www.twitch.tv/embed/hellisium/chat?parent=localhost";
-
   return (
     <div className="min-h-[calc(100vh-160px)] flex flex-col items-center justify-center bg-background text-foreground p-8">
       <div className="text-center max-w-4xl mx-auto mb-12">
@@ -53,8 +50,7 @@ const Index = () => {
             onClick={() => setIsTheaterMode(!isTheaterMode)}
             className="text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10 flex items-center gap-2"
           >
-            {isTheaterMode ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
-            {isTheaterMode ? "Выйти из режима кинотеатра" : "Режим кинотеатра"}
+            {isTheaterMode ? <Minimize2 className="h-5 w-5" /> : "Режим кинотеатра"}
           </Button>
           <a href="https://www.donationalerts.com/r/hellisium" target="_blank" rel="noopener noreferrer">
             <Button size="lg" variant="outline" className="text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10">
@@ -141,7 +137,8 @@ const Index = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="relative w-full pt-[150%] md:pt-[56.25%] bg-muted rounded-lg overflow-hidden">
+            {/* Changed height to a fixed value for better chat display */}
+            <div className="relative w-full h-[600px] bg-muted rounded-lg overflow-hidden">
               <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
             </div>
             <div className="mt-4 text-center">
