@@ -4,7 +4,7 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Gamepad, User, Calendar, ScrollText, Monitor, Heart, Sparkles, Mail } from "lucide-react";
+import { Menu, Gamepad, User, Calendar, ScrollText, Monitor, Heart, Sparkles, Mail, Video } from "lucide-react"; // Added Video icon
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const navLinks = [
@@ -16,6 +16,7 @@ const navLinks = [
   { name: "Поддержка", path: "/support", icon: <Heart className="h-5 w-5" /> },
   { name: "Фишки", path: "/features", icon: <Sparkles className="h-5 w-5" /> },
   { name: "Контакты", path: "/contacts", icon: <Mail className="h-5 w-5" /> },
+  { name: "Топ-моменты", path: "/highlights", icon: <Video className="h-5 w-5" /> }, // New nav link
 ];
 
 const Navbar = () => {

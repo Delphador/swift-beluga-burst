@@ -3,7 +3,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Info } from "lucide-react";
+import { Info, HandRight, AlertTriangle } from "lucide-react"; // Added new icons
 
 const CommunityRules = () => {
   const rules = [
@@ -16,7 +16,7 @@ const CommunityRules = () => {
 
   return (
     <div className="container mx-auto p-8 min-h-[calc(100vh-160px)]">
-      <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">Правила сообщества</h1>
+      <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">📜 Правила сообщества</h1>
       <div className="grid md:grid-cols-1 gap-8">
         <Card className="bg-card text-card-foreground shadow-lg">
           <CardHeader>
@@ -26,18 +26,27 @@ const CommunityRules = () => {
             <p className="mb-4">
               Чтобы наше сообщество оставалось приятным и дружелюбным местом для всех, пожалуйста, ознакомьтесь с нашими правилами:
             </p>
-            <ul className="list-disc list-inside space-y-3">
+            <ol className="list-decimal list-inside space-y-3"> {/* Changed to ordered list */}
               {rules.map((rule, index) => (
-                <li key={index}>{rule}</li>
+                <li key={index} className="flex items-start gap-2">
+                  <HandRight className="h-5 w-5 text-primary flex-shrink-0 mt-1" /> {/* Added icon */}
+                  <span>{rule}</span>
+                </li>
               ))}
-            </ul>
+            </ol>
             <Alert className="mt-6 bg-accent text-accent-foreground">
-              <Info className="h-4 w-4" />
+              <AlertTriangle className="h-4 w-4" /> {/* Changed icon to AlertTriangle */}
               <AlertTitle>Нарушения и апелляции</AlertTitle>
               <AlertDescription>
                 Нарушение правил может привести к предупреждению, временному или постоянному бану. Если вы считаете, что были забанены несправедливо, пожалуйста, свяжитесь с модераторами или HeLLisiuM через раздел "Контакты".
               </AlertDescription>
             </Alert>
+            <div className="mt-6 text-center">
+              {/* Placeholder for a meme/gif about positive atmosphere */}
+              <div className="w-full h-48 bg-muted rounded-lg flex items-center justify-center text-muted-foreground text-xl">
+                [Мем/гифка про позитивную атмосферу]
+              </div>
+            </div>
           </CardContent>
         </Card>
       </div>

@@ -3,16 +3,32 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Gem, Rocket, Crown } from "lucide-react"; // Added new icons
+import { Progress } from "@/components/ui/progress"; // Import Progress component
 
 const SupportSubscription = () => {
-  const subscriptionBenefits = [
-    "Эксклюзивные смайлы для чата",
-    "Уникальная иконка клуба рядом с ником",
-    "Приоритет в играх с подписчиками",
-    "Доступ к закулисью (в разработке)",
-    "Отсутствие рекламы на стримах",
-    "Участие в закрытых голосованиях",
+  const monthlyGoal = {
+    description: "Новая камера",
+    current: 15000,
+    target: 30000,
+  };
+
+  const subscriptionTiers = [
+    {
+      name: "Базовый",
+      icon: <Gem className="h-6 w-6 text-yellow-500" />,
+      benefits: ["Эксклюзивные смайлы для чата", "Уникальная иконка клуба рядом с ником"],
+    },
+    {
+      name: "Премиум",
+      icon: <Rocket className="h-6 w-6 text-blue-500" />,
+      benefits: ["Все из Базового", "Приоритет в играх с подписчиками", "Ранний доступ к контенту (в разработке)"],
+    },
+    {
+      name: "VIP",
+      icon: <Crown className="h-6 w-6 text-purple-500" />,
+      benefits: ["Все из Премиум", "Доступ к закулисью (в разработке)", "Личный Discord канал", "Игра со стримером"],
+    },
   ];
 
   return (
@@ -27,6 +43,15 @@ const SupportSubscription = () => {
             <p>
               Ваша поддержка очень важна и помогает мне продолжать делать то, что я люблю – стримить для вас! Каждая донат или подписка мотивирует меня создавать еще больше качественного контента.
             </p>
+            <div className="mb-6">
+              <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
+                💰 Ежемесячная цель: {monthlyGoal.description}
+              </h3>
+              <Progress value={(monthlyGoal.current / monthlyGoal.target) * 100} className="w-full mb-2" />
+              <p className="text-sm text-muted-foreground">
+                {monthlyGoal.current.toLocaleString()}₽ из {monthlyGoal.target.toLocaleString()}₽
+              </p>
+            </div>
             <p>
               Вы можете поддержать меня через следующие платформы:
             </p>
@@ -38,7 +63,7 @@ const SupportSubscription = () => {
                 Поддержать через Boosty
               </Button>
               <a href="https://goodgame.ru/channel/HeLLisiuM/" target="_blank" rel="noopener noreferrer">
-                <Button className="w-full py-6 text-lg bg-blue-800 hover:bg-blue-900"> {/* Using a darker blue for GoodGame */}
+                <Button className="w-full py-6 text-lg bg-blue-800 hover:bg-blue-900">
                   Поддержать через GoodGame.ru
                 </Button>
               </a>
@@ -58,20 +83,68 @@ const SupportSubscription = () => {
             <p>
               Оформите подписку, чтобы получить доступ к эксклюзивным бонусам и стать частью нашего особого клуба!
             </p>
-            <ul className="space-y-3">
-              {subscriptionBenefits.map((benefit, index) => (
-                <li key={index} className="flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
-                  <span>{benefit}</span>
-                </li>
-              ))}
-            </ul>
-            <Button className="w-full py-6 text-lg bg-blue-600 hover:bg-blue-700">
-              Оформить подписку на Twitch
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="border-b border-border">
+                    <th className="p-2"></th>
+                    {subscriptionTiers.map((tier) => (
+                      <th key={tier.name} className="p-2 text-center">
+                        <div className="flex flex-col items-center justify-center">
+                          {tier.icon}
+                          <span className="font-bold text-xl mt-1">{tier.name}</span>
+                        </div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="p-2 font-medium">Смайлы</td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="p-2 font-medium">Иконка клуба</td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="p-2 font-medium">Приоритет в играх</td>
+                    <td className="p-2 text-center"></td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="p-2 font-medium">Ранний доступ</td>
+                    <td className="p-2 text-center"></td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="p-2 font-medium">Личный Discord</td>
+                    <td className="p-2 text-center"></td>
+                    <td className="p-2 text-center"></td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                  <tr>
+                    <td className="p-2 font-medium">Игра со стримером</td>
+                    <td className="p-2 text-center"></td>
+                    <td className="p-2 text-center"></td>
+                    <td className="p-2 text-center"><CheckCircle2 className="h-5 w-5 text-green-500 mx-auto" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <Button className="w-full py-6 text-lg bg-blue-600 hover:bg-blue-700 flex items-center justify-center gap-3">
+              <Twitch className="h-6 w-6" /> Оформить подписку на Twitch
             </Button>
             <a href="https://goodgame.ru/channel/HeLLisiuM/subscribe" target="_blank" rel="noopener noreferrer">
-              <Button className="w-full py-6 text-lg bg-blue-800 hover:bg-blue-900 mt-4"> {/* Added margin-top for spacing */}
-                Оформить подписку на GoodGame.ru
+              <Button className="w-full py-6 text-lg bg-blue-800 hover:bg-blue-900 mt-4 flex items-center justify-center gap-3">
+                <img src="/goodgame-logo.png" alt="GoodGame Logo" className="h-6 w-6" /> Оформить подписку на GoodGame.ru
               </Button>
             </a>
             <p className="text-sm text-muted-foreground mt-4">

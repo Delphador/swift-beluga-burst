@@ -25,7 +25,7 @@ const TechSetup = () => {
     { item: "Монитор 1", spec: "Dell Alienware AW2521HFL (240Hz)" },
     { item: "Монитор 2", spec: "LG 27GL850-B (144Hz)" },
     { item: "Клавиатура", spec: "HyperX Alloy Origins Core" },
-    { item: "Мышь", spec: "Logitech G Pro X Superlight" },
+    { item: "Мышь", "spec": "Logitech G Pro X Superlight" },
     { item: "Геймпад", spec: "Xbox Wireless Controller" },
     { item: "Микрофон", spec: "Shure MV7" },
     { item: "Наушники", spec: "Beyerdynamic DT 770 Pro" },
@@ -34,7 +34,7 @@ const TechSetup = () => {
 
   return (
     <div className="container mx-auto p-8 min-h-[calc(100vh-160px)]">
-      <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">Технический сетап</h1>
+      <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">💻 Мое оборудование</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <Card className="bg-card text-card-foreground shadow-lg">
           <CardHeader>
@@ -80,6 +80,15 @@ const TechSetup = () => {
       </div>
 
       <div className="mt-10 text-center">
+        {/* Placeholder for photo of real setup */}
+        <div className="w-full max-w-3xl mx-auto h-64 bg-muted rounded-lg flex items-center justify-center text-muted-foreground text-xl mb-8">
+          [Фото реального сетапа HeLLisiuM]
+        </div>
+        {/* Placeholder for interactive scheme */}
+        <div className="w-full max-w-3xl mx-auto h-64 bg-muted rounded-lg flex items-center justify-center text-muted-foreground text-xl mb-8">
+          [Интерактивная схема сетапа (наведите на компонент → информация)]
+        </div>
+
         <h2 className="text-3xl font-bold mb-4 text-primary-foreground">Партнерские ссылки</h2>
         <p className="text-lg text-muted-foreground mb-6">
           Хотите собрать похожий сетап? Вот ссылки на некоторые из моих любимых компонентов:

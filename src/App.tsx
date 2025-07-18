@@ -14,6 +14,7 @@ import TechSetup from "./pages/TechSetup";
 import SupportSubscription from "./pages/SupportSubscription";
 import InteractiveFeatures from "./pages/InteractiveFeatures";
 import ContactsSocials from "./pages/ContactsSocials";
+import HighlightsGallery from "./pages/HighlightsGallery"; // Import new page
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
               <Route path="/support" element={<SupportSubscription />} />
               <Route path="/features" element={<InteractiveFeatures />} />
               <Route path="/contacts" element={<ContactsSocials />} />
+              <Route path="/highlights" element={<HighlightsGallery />} /> {/* New route */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

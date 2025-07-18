@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import { BellRing } from "lucide-react";
+import DonationWidget from "@/components/DonationWidget"; // Import the new DonationWidget
 
 const Index = () => {
   const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
@@ -19,10 +21,10 @@ const Index = () => {
     <div className="min-h-[calc(100vh-160px)] flex flex-col items-center justify-center bg-background text-foreground p-8">
       <div className="text-center max-w-4xl mx-auto mb-12">
         <h1 className="text-5xl font-extrabold mb-6 text-primary-foreground leading-tight">
-          Привет! Я HeLLisiuM, и это мой мир игр.
+          🔥 Добро пожаловать на канал HeLLisiuM!
         </h1>
         <p className="text-xl text-muted-foreground mb-8">
-          Добро пожаловать на мой канал! Здесь мы вместе погружаемся в захватывающие игровые вселенные, делимся эмоциями и создаем незабываемые моменты.
+          Здесь мы вместе погружаемся в захватывающие игровые вселенные, делимся эмоциями и создаем незабываемые моменты.
         </p>
         <div className="flex justify-center gap-4 flex-wrap">
           <Link to="/schedule">
@@ -66,19 +68,30 @@ const Index = () => {
             </Button>
           </div>
           <div className="relative w-full pt-[56.25%] bg-muted rounded-lg overflow-hidden">
+            {/* Реальный встроенный плеер Twitch/YouTube/GoodGame */}
             <iframe
               src={playerUrls[selectedPlayer as keyof typeof playerUrls]}
               allowFullScreen
               className="absolute top-0 left-0 w-full h-full border-0"
               title="Featured Stream"
             ></iframe>
+            {/* Placeholder for when the iframe might not load or for initial state */}
             <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
               Здесь будет встроенный плеер {selectedPlayer.charAt(0).toUpperCase() + selectedPlayer.slice(1)}
             </div>
           </div>
-          <p className="text-center text-muted-foreground mt-4">
-            Название последнего стрима: "Эпические приключения в Baldur's Gate 3"
-          </p>
+          <div className="flex flex-col sm:flex-row justify-between items-center mt-4 gap-2">
+            <p className="text-center sm:text-left text-muted-foreground">
+              ▶️ Последний стрим: "Эпические приключения в Baldur's Gate 3"
+              <br />
+              <a href="#" className="text-primary hover:underline">
+                [Ссылка на запись]
+              </a>
+            </p>
+            <Button variant="secondary" className="flex items-center gap-2">
+              <BellRing className="h-4 w-4" /> Уведомить о начале стрима {/* Requires backend integration */}
+            </Button>
+          </div>
         </CardContent>
       </Card>
 
@@ -113,7 +126,19 @@ const Index = () => {
             </CardContent>
           </Card>
         </Link>
+        <Link to="/highlights"> {/* New link to Highlights Gallery */}
+          <Card className="bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">🎬 Топ-моменты</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">Лучшие моменты со стримов и голосования.</p>
+            </CardContent>
+          </Card>
+        </Link>
       </div>
+
+      <DonationWidget /> {/* Add the new DonationWidget */}
     </div>
   );
 };

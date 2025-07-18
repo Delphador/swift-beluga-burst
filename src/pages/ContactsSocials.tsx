@@ -6,16 +6,26 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Twitch, Youtube, Link, Mail } from "lucide-react";
+import { Twitch, Youtube, Link, Mail, Send, Telegram, Discord } from "lucide-react"; // Added Telegram, Discord, Send
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { toast } from "sonner"; // For success message
 
 const ContactsSocials = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would typically send the form data to a backend
+    console.log("Form submitted!");
+    toast.success("Ваше сообщение успешно отправлено! HeLLisiuM скоро свяжется с вами.");
+    // Reset form fields if needed
+  };
+
   return (
     <div className="container mx-auto p-8 min-h-[calc(100vh-160px)]">
       <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">Контакты и соцсети</h1>
       <div className="grid md:grid-cols-2 gap-8">
         <Card className="bg-card text-card-foreground shadow-lg">
           <CardHeader>
-            <CardTitle className="text-2xl font-semibold">Наши соцсети</CardTitle>
+            <CardTitle className="text-2xl font-semibold">📱 Наши соцсети</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4 text-lg">
             <p>
@@ -42,6 +52,16 @@ const ContactsSocials = () => {
                   GoodGame.ru
                 </Button>
               </a>
+              <a href="https://t.me/your_andrey_telegram" target="_blank" rel="noopener noreferrer">
+                <Button className="w-full py-6 text-lg flex items-center justify-center gap-3 bg-blue-500 hover:bg-blue-600">
+                  <Telegram className="h-6 w-6" /> Telegram
+                </Button>
+              </a>
+              <a href="https://discord.gg/your_andrey_discord" target="_blank" rel="noopener noreferrer">
+                <Button className="w-full py-6 text-lg flex items-center justify-center gap-3 bg-indigo-600 hover:bg-indigo-700">
+                  <Discord className="h-6 w-6" /> Discord
+                </Button>
+              </a>
               {/* Add more social media links as needed */}
             </div>
           </CardContent>
@@ -55,21 +75,35 @@ const ContactsSocials = () => {
             <p>
               Для деловых предложений, сотрудничества или других важных вопросов, пожалуйста, используйте форму ниже или напишите мне на почту.
             </p>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <Label htmlFor="name">Ваше имя</Label>
-                <Input id="name" type="text" placeholder="Имя" />
+                <Label htmlFor="name">Ваше имя <span className="text-destructive">*</span></Label>
+                <Input id="name" type="text" placeholder="Имя" required />
               </div>
               <div>
-                <Label htmlFor="email">Ваш Email</Label>
-                <Input id="email" type="email" placeholder="email@example.com" />
+                <Label htmlFor="email">Ваш Email <span className="text-destructive">*</span></Label>
+                <Input id="email" type="email" placeholder="email@example.com" required />
+              </div>
+              <div>
+                <Label htmlFor="subject">Тема</Label>
+                <Select>
+                  <SelectTrigger id="subject">
+                    <SelectValue placeholder="Выберите тему" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="collaboration">Сотрудничество</SelectItem>
+                    <SelectItem value="business">Деловое предложение</SelectItem>
+                    <SelectItem value="question">Вопрос по стриму/игре</SelectItem>
+                    <SelectItem value="other">Другое</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div>
                 <Label htmlFor="message">Сообщение</Label>
                 <Textarea id="message" placeholder="Ваше сообщение..." rows={5} />
               </div>
-              <Button type="submit" className="w-full py-6 text-lg">
-                Отправить сообщение
+              <Button type="submit" className="w-full py-6 text-lg flex items-center justify-center gap-3">
+                <Send className="h-6 w-6" /> Отправить сообщение
               </Button>
             </form>
             <p className="text-center text-muted-foreground mt-4">

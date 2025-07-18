@@ -4,14 +4,16 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
+import { Gamepad, Clock, Info } from "lucide-react"; // Added icons
+import { Progress } from "@/components/ui/progress"; // Import Progress component
 
 const StreamSchedule = () => {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   const upcomingStreams = [
-    { id: 1, game: "Cyberpunk 2077", time: "Сегодня, 20:00 МСК", description: "Продолжаем приключения в Найт-Сити!" },
-    { id: 2, game: "Baldur's Gate 3", time: "Завтра, 19:00 МСК", description: "Новая глава в мире Фаэруна." },
-    { id: 3, game: "Valorant", time: "Пятница, 21:00 МСК", description: "Ранкеды с подписчиками!" },
+    { id: 1, game: "Cyberpunk 2077", time: "Сегодня, 20:00 МСК", description: "Продолжаем приключения в Найт-Сити!", progress: 75 },
+    { id: 2, game: "Baldur's Gate 3", time: "Завтра, 19:00 МСК", description: "Новая глава в мире Фаэруна.", progress: 50 },
+    { id: 3, game: "Valorant", time: "Пятница, 21:00 МСК", description: "Ранкеды с подписчиками!", progress: 25 },
   ];
 
   return (
@@ -39,16 +41,26 @@ const StreamSchedule = () => {
             {upcomingStreams.length > 0 ? (
               upcomingStreams.map((stream) => (
                 <div key={stream.id} className="border-b pb-4 last:border-b-0 last:pb-0">
-                  <h3 className="text-xl font-medium text-primary">{stream.game}</h3>
-                  <p className="text-muted-foreground">{stream.time}</p>
+                  <h3 className="text-xl font-medium text-primary flex items-center gap-2">
+                    <Gamepad className="h-5 w-5" /> {stream.game}
+                  </h3>
+                  <p className="text-muted-foreground flex items-center gap-2">
+                    <Clock className="h-4 w-4" /> {stream.time}
+                  </p>
                   <p className="mt-1">{stream.description}</p>
+                  <div className="mt-2">
+                    <p className="text-sm text-muted-foreground mb-1">Прогресс до начала:</p>
+                    <Progress value={stream.progress} className="w-full" /> {/* Placeholder progress bar */}
+                  </div>
                   <Button variant="outline" size="sm" className="mt-2">
                     Добавить в календарь
                   </Button>
                 </div>
               ))
             ) : (
-              <p className="text-muted-foreground">Пока нет запланированных стримов. Следите за обновлениями!</p>
+              <p className="text-muted-foreground flex items-center gap-2">
+                <Info className="h-4 w-4" /> Пока нет запланированных стримов. Следите за обновлениями!
+              </p>
             )}
           </CardContent>
         </Card>
