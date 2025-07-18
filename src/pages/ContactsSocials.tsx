@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Twitch, Youtube, Link, Mail, Send, Telegram, Discord } from "lucide-react"; // Added Telegram, Discord, Send
+import { Twitch, Youtube, Link, Mail, Send, MessageSquare } from "lucide-react"; // Changed Discord to MessageSquare, Telegram to Send
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner"; // For success message
 
@@ -54,12 +54,12 @@ const ContactsSocials = () => {
               </a>
               <a href="https://t.me/your_andrey_telegram" target="_blank" rel="noopener noreferrer">
                 <Button className="w-full py-6 text-lg flex items-center justify-center gap-3 bg-blue-500 hover:bg-blue-600">
-                  <Telegram className="h-6 w-6" /> Telegram
+                  <Send className="h-6 w-6" /> Telegram
                 </Button>
               </a>
               <a href="https://discord.gg/your_andrey_discord" target="_blank" rel="noopener noreferrer">
                 <Button className="w-full py-6 text-lg flex items-center justify-center gap-3 bg-indigo-600 hover:bg-indigo-700">
-                  <Discord className="h-6 w-6" /> Discord
+                  <MessageSquare className="h-6 w-6" /> Discord
                 </Button>
               </a>
               {/* Add more social media links as needed */}
