@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="bg-background text-foreground p-6 text-center border-t border-border mt-8">
       <div className="container mx-auto">
         <p className="text-sm text-muted-foreground mb-2">
-          &copy; {new Date().getFullYear()} Андрей Стример. Все права защищены.
+          &copy; {new Date().getFullYear()} HeLLisiuM. Все права защищены.
         </p>
         <div className="flex justify-center space-x-4 mb-4">
           {/* Placeholder for social media icons */}

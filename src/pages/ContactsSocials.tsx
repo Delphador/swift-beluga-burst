@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Twitch, Youtube, Link, Mail } from "lucide-react"; // Changed Vkontakte to Link
+import { Twitch, Youtube, Link, Mail } from "lucide-react";
 
 const ContactsSocials = () => {
   return (
@@ -35,6 +35,11 @@ const ContactsSocials = () => {
               <a href="https://vk.com/your_andrey_vk" target="_blank" rel="noopener noreferrer">
                 <Button className="w-full py-6 text-lg flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700">
                   <Link className="h-6 w-6" /> ВКонтакте
+                </Button>
+              </a>
+              <a href="https://goodgame.ru/channel/HeLLisiuM/" target="_blank" rel="noopener noreferrer">
+                <Button className="w-full py-6 text-lg flex items-center justify-center gap-3 bg-blue-800 hover:bg-blue-900">
+                  GoodGame.ru
                 </Button>
               </a>
               {/* Add more social media links as needed */}
@@ -68,7 +73,7 @@ const ContactsSocials = () => {
               </Button>
             </form>
             <p className="text-center text-muted-foreground mt-4">
-              Или напишите напрямую: <a href="mailto:andrey.streamer@example.com" className="text-primary hover:underline">andrey.streamer@example.com</a>
+              Или напишите напрямую: <a href="mailto:hellisium.streamer@example.com" className="text-primary hover:underline">hellisium.streamer@example.com</a>
             </p>
           </CardContent>
         </Card>

@@ -37,6 +37,11 @@ const SupportSubscription = () => {
               <Button className="w-full py-6 text-lg bg-purple-600 hover:bg-purple-700">
                 Поддержать через Boosty
               </Button>
+              <a href="https://goodgame.ru/channel/HeLLisiuM/" target="_blank" rel="noopener noreferrer">
+                <Button className="w-full py-6 text-lg bg-blue-800 hover:bg-blue-900"> {/* Using a darker blue for GoodGame */}
+                  Поддержать через GoodGame.ru
+                </Button>
+              </a>
               {/* Add more donation options if needed */}
             </div>
             <p className="text-sm text-muted-foreground mt-4">
@@ -64,6 +69,11 @@ const SupportSubscription = () => {
             <Button className="w-full py-6 text-lg bg-blue-600 hover:bg-blue-700">
               Оформить подписку на Twitch
             </Button>
+            <a href="https://goodgame.ru/channel/HeLLisiuM/subscribe" target="_blank" rel="noopener noreferrer">
+              <Button className="w-full py-6 text-lg bg-blue-800 hover:bg-blue-900 mt-4"> {/* Added margin-top for spacing */}
+                Оформить подписку на GoodGame.ru
+              </Button>
+            </a>
             <p className="text-sm text-muted-foreground mt-4">
               Список преимуществ будет постоянно расширяться!
             </p>

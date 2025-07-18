@@ -4,13 +4,22 @@ import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 const Index = () => {
+  const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
+
+  const playerUrls = {
+    twitch: "https://player.twitch.tv/?channel=hellisium&parent=localhost&autoplay=false", // Example Twitch channel
+    youtube: "https://www.youtube.com/embed/your_youtube_stream_id?autoplay=0", // Example YouTube stream
+    goodgame: "https://goodgame.ru/player?id=your_goodgame_channel_id&autoplay=0", // Example GoodGame channel
+  };
+
   return (
     <div className="min-h-[calc(100vh-160px)] flex flex-col items-center justify-center bg-background text-foreground p-8">
       <div className="text-center max-w-4xl mx-auto mb-12">
         <h1 className="text-5xl font-extrabold mb-6 text-primary-foreground leading-tight">
-          Привет! Я Андрей, и это мой мир игр.
+          Привет! Я HeLLisiuM, и это мой мир игр.
         </h1>
         <p className="text-xl text-muted-foreground mb-8">
           Добро пожаловать на мой канал! Здесь мы вместе погружаемся в захватывающие игровые вселенные, делимся эмоциями и создаем незабываемые моменты.
@@ -36,16 +45,35 @@ const Index = () => {
           </CardTitle>
         </CardHeader>
         <CardContent>
+          <div className="flex justify-center gap-4 mb-6">
+            <Button
+              variant={selectedPlayer === "twitch" ? "default" : "outline"}
+              onClick={() => setSelectedPlayer("twitch")}
+            >
+              Twitch
+            </Button>
+            <Button
+              variant={selectedPlayer === "youtube" ? "default" : "outline"}
+              onClick={() => setSelectedPlayer("youtube")}
+            >
+              YouTube
+            </Button>
+            <Button
+              variant={selectedPlayer === "goodgame" ? "default" : "outline"}
+              onClick={() => setSelectedPlayer("goodgame")}
+            >
+              GoodGame.ru
+            </Button>
+          </div>
           <div className="relative w-full pt-[56.25%] bg-muted rounded-lg overflow-hidden">
-            {/* Placeholder for embedded stream player (e.g., Twitch embed) */}
             <iframe
-              src="https://player.twitch.tv/?video=2200000000&parent=localhost&autoplay=false"
+              src={playerUrls[selectedPlayer as keyof typeof playerUrls]}
               allowFullScreen
               className="absolute top-0 left-0 w-full h-full border-0"
               title="Featured Stream"
             ></iframe>
             <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
-              Здесь будет встроенный плеер Twitch/YouTube
+              Здесь будет встроенный плеер {selectedPlayer.charAt(0).toUpperCase() + selectedPlayer.slice(1)}
             </div>
           </div>
           <p className="text-center text-muted-foreground mt-4">
@@ -58,7 +86,7 @@ const Index = () => {
         <Link to="/about">
           <Card className="bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Узнать об Андрее</CardTitle>
+              <CardTitle className="text-xl font-semibold">Узнать об HeLLisiuM</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">Моя история, увлечения и путь в стриминге.</p>
