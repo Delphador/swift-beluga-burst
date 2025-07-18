@@ -15,7 +15,7 @@ const StreamChat = () => {
   };
 
   return (
-    <Card className="w-full max-w-5xl bg-card text-card-foreground shadow-xl p-6 mt-12 mx-auto">
+    <Card className="w-full bg-card text-card-foreground shadow-xl p-6"> {/* Removed max-w-5xl, mt-12, mx-auto */}
       <CardHeader className="pb-4">
         <CardTitle className="text-3xl font-bold text-center text-primary-foreground">
           Чат трансляции

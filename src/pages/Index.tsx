@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import { BellRing } from "lucide-react"; // Keep BellRing import for now, though the button is removed.
+import { BellRing, Maximize2, Minimize2 } from "lucide-react"; // Added Maximize2, Minimize2 icons
 import DonationWidget from "@/components/DonationWidget";
 import StreamChat from "@/components/StreamChat";
 
 const Index = () => {
   const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
+  const [isTheaterMode, setIsTheaterMode] = useState(false); // New state for theater mode
 
   const playerUrls = {
     twitch: "https://player.twitch.tv/?channel=hellisium&parent=localhost&autoplay=false", // Example Twitch channel
@@ -48,7 +49,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className="w-full max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+      <div className={`w-full mx-auto grid grid-cols-1 gap-8 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-2 lg:max-w-5xl'}`}>
         {/* Player Card */}
         <Card className="w-full bg-card text-card-foreground shadow-xl p-6">
           <CardHeader className="pb-4">
@@ -57,7 +58,7 @@ const Index = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-center gap-4 mb-6">
+            <div className="flex justify-center gap-4 mb-6 flex-wrap">
               <Button
                 variant={selectedPlayer === "twitch" ? "default" : "outline"}
                 onClick={() => setSelectedPlayer("twitch")}
@@ -75,6 +76,15 @@ const Index = () => {
                 onClick={() => setSelectedPlayer("goodgame")}
               >
                 GoodGame.ru
+              </Button>
+              {/* New button for Theater Mode */}
+              <Button
+                variant="outline"
+                onClick={() => setIsTheaterMode(!isTheaterMode)}
+                className="flex items-center gap-2"
+              >
+                {isTheaterMode ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+                {isTheaterMode ? "Выйти из режима кинотеатра" : "Режим кинотеатра"}
               </Button>
             </div>
             <div className="relative w-full pt-[56.25%] bg-muted rounded-lg overflow-hidden">
@@ -113,7 +123,6 @@ const Index = () => {
                   [Ссылка на запись]
                 </a>
               </p>
-              {/* Removed the "Уведомить о начале стрима" button */}
             </div>
           </CardContent>
         </Card>
