@@ -45,7 +45,7 @@ const Navbar = () => {
                     key={link.name}
                     to={link.path}
                     className={({ isActive }) =>
-                      `flex items-center gap-2 text-lg font-medium transition-colors ${
+                      `flex items-center gap-2 text-lg font-medium transition-colors whitespace-nowrap ${ /* Added whitespace-nowrap */
                         isActive ? "text-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary"
                       }`
                     }
@@ -58,13 +58,13 @@ const Navbar = () => {
             </SheetContent>
           </Sheet>
         ) : (
-          <div className="flex gap-6">
+          <div className="flex gap-4"> {/* Changed gap-6 to gap-4 */}
             {navLinks.map((link) => (
               <NavLink
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `flex items-center gap-2 text-lg font-medium transition-colors ${
+                  `flex items-center gap-2 text-lg font-medium transition-colors whitespace-nowrap ${ /* Added whitespace-nowrap */
                     isActive ? "text-primary" : "text-foreground hover:text-primary"
                   }`
                 }

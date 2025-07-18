@@ -21,10 +21,10 @@ const Index = () => {
   return (
     <div className="min-h-[calc(100vh-160px)] flex flex-col items-center justify-center bg-background text-foreground p-8">
       <div className="text-center max-w-4xl mx-auto mb-12">
-        <h1 className="text-5xl font-extrabold mb-6 text-primary-foreground leading-tight">
+        <h1 className="text-5xl font-extrabold mb-6 text-foreground leading-tight"> {/* Changed text-primary-foreground to text-foreground */}
           🔥 Добро пожаловать на канал HeLLisiuM!
         </h1>
-        <p className="text-xl text-foreground mb-8"> {/* Changed text-muted-foreground to text-foreground for readability */}
+        <p className="text-xl text-foreground mb-8">
           Здесь мы вместе погружаемся в захватывающие игровые вселенные, делимся эмоциями и создаем незабываемые моменты.
         </p>
         <div className="flex justify-center gap-4 flex-wrap">
@@ -98,7 +98,7 @@ const Index = () => {
 
       <StreamChat /> {/* Integrated StreamChat component */}
 
-      <div className="w-full max-w-4xl mx-auto grid md:grid-cols-2 gap-6 text-center mt-12"> {/* Changed md:grid-cols-3 to md:grid-cols-2 */}
+      <div className="w-full max-w-4xl mx-auto grid md:grid-cols-2 gap-6 text-center mt-12">
         <Link to="/about">
           <Card className="bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
             <CardHeader>
