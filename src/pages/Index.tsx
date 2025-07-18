@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import { BellRing, Maximize2, Minimize2 } from "lucide-react"; // Added Maximize2, Minimize2 icons
+import { BellRing, Maximize2, Minimize2 } from "lucide-react";
 import DonationWidget from "@/components/DonationWidget";
 import StreamChat from "@/components/StreamChat";
 
@@ -41,6 +41,16 @@ const Index = () => {
               Расписание стримов
             </Button>
           </Link>
+          {/* Moved Theater Mode button here */}
+          <Button
+            size="lg"
+            variant="outline"
+            onClick={() => setIsTheaterMode(!isTheaterMode)}
+            className="text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10 flex items-center gap-2"
+          >
+            {isTheaterMode ? <Minimize2 className="h-5 w-5" /> : <Maximize2 className="h-5 w-5" />}
+            {isTheaterMode ? "Выйти из режима кинотеатра" : "Режим кинотеатра"}
+          </Button>
           <a href="https://www.donationalerts.com/r/hellisium" target="_blank" rel="noopener noreferrer">
             <Button size="lg" variant="outline" className="text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10">
               Поддержать стримера
@@ -76,15 +86,6 @@ const Index = () => {
                 onClick={() => setSelectedPlayer("goodgame")}
               >
                 GoodGame.ru
-              </Button>
-              {/* New button for Theater Mode */}
-              <Button
-                variant="outline"
-                onClick={() => setIsTheaterMode(!isTheaterMode)}
-                className="flex items-center gap-2"
-              >
-                {isTheaterMode ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-                {isTheaterMode ? "Выйти из режима кинотеатра" : "Режим кинотеатра"}
               </Button>
             </div>
             <div className="relative w-full pt-[56.25%] bg-muted rounded-lg overflow-hidden">
