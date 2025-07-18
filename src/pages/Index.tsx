@@ -1,17 +1,91 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+"use client";
 
 import { MadeWithDyad } from "@/components/made-with-dyad";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">
-          Start building your amazing project here!
+    <div className="min-h-[calc(100vh-160px)] flex flex-col items-center justify-center bg-background text-foreground p-8">
+      <div className="text-center max-w-4xl mx-auto mb-12">
+        <h1 className="text-5xl font-extrabold mb-6 text-primary-foreground leading-tight">
+          Привет! Я Андрей, и это мой мир игр.
+        </h1>
+        <p className="text-xl text-muted-foreground mb-8">
+          Добро пожаловать на мой канал! Здесь мы вместе погружаемся в захватывающие игровые вселенные, делимся эмоциями и создаем незабываемые моменты.
         </p>
+        <div className="flex justify-center gap-4 flex-wrap">
+          <Link to="/schedule">
+            <Button size="lg" className="text-lg px-8 py-4 bg-primary hover:bg-primary/90">
+              Расписание стримов
+            </Button>
+          </Link>
+          <Link to="/support">
+            <Button size="lg" variant="outline" className="text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10">
+              Поддержать стримера
+            </Button>
+          </Link>
+        </div>
       </div>
-      <MadeWithDyad />
+
+      <Card className="w-full max-w-5xl bg-card text-card-foreground shadow-xl p-6 mb-12">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-3xl font-bold text-center text-primary-foreground">
+            Последний стрим / Избранное видео
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="relative w-full pt-[56.25%] bg-muted rounded-lg overflow-hidden">
+            {/* Placeholder for embedded stream player (e.g., Twitch embed) */}
+            <iframe
+              src="https://player.twitch.tv/?video=2200000000&parent=localhost&autoplay=false"
+              allowFullScreen
+              className="absolute top-0 left-0 w-full h-full border-0"
+              title="Featured Stream"
+            ></iframe>
+            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
+              Здесь будет встроенный плеер Twitch/YouTube
+            </div>
+          </div>
+          <p className="text-center text-muted-foreground mt-4">
+            Название последнего стрима: "Эпические приключения в Baldur's Gate 3"
+          </p>
+        </CardContent>
+      </Card>
+
+      <div className="w-full max-w-4xl mx-auto grid md:grid-cols-3 gap-6 text-center">
+        <Link to="/about">
+          <Card className="bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">Узнать об Андрее</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">Моя история, увлечения и путь в стриминге.</p>
+            </CardContent>
+          </Card>
+        </Link>
+        <Link to="/rules">
+          <Card className="bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">Правила сообщества</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">Как сделать наше общение приятным для всех.</p>
+            </CardContent>
+          </Card>
+        </Link>
+        <Link to="/contacts">
+          <Card className="bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">Контакты и соцсети</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">Где меня найти и как связаться.</p>
+            </CardContent>
+          </Card>
+        </Link>
+      </div>
     </div>
   );
 };
