@@ -5,9 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import { Maximize2, Minimize2 } from "lucide-react"; // Removed BellRing as it's no longer used
+import { Maximize2, Minimize2 } from "lucide-react";
 import DonationWidget from "@/components/DonationWidget";
-// StreamChat import and usage removed
 
 const Index = () => {
   const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
@@ -26,13 +25,11 @@ const Index = () => {
     goodgame: "https://goodgame.ru/channel/your_goodgame_channel_id", // Replace with actual GoodGame channel URL
   };
 
-  // URLs for opening chat in a new window/tab (moved from StreamChat.tsx)
-  const popoutChatUrls = {
-    twitch: "https://www.twitch.tv/popout/hellisium/chat",
-    youtube: "https://www.youtube.com/live_chat?v=your_youtube_stream_id&is_popout=1", // Requires actual YouTube video ID
-    goodgame: "https://goodgame.ru/chat/hellisium/", // Same as embed, but direct open might work better
-    vkvideo: "https://live.vkvideo.ru/hellisium/chat", // Same as embed, might not have a dedicated popout
-  };
+  // URL for opening Twitch chat in a new window/tab
+  const twitchPopoutChatUrl = "https://www.twitch.tv/popout/hellisium/chat";
+
+  // Twitch chat embed URL provided by the user
+  const twitchChatEmbedUrl = "https://www.twitch.tv/embed/hellisium/chat?parent=hellisium.pro";
 
   return (
     <div className="min-h-[calc(100vh-160px)] flex flex-col items-center justify-center bg-background text-foreground p-8">
@@ -49,7 +46,6 @@ const Index = () => {
               Расписание стримов
             </Button>
           </Link>
-          {/* Moved Theater Mode button here */}
           <Button
             size="lg"
             variant="outline"
@@ -67,7 +63,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className={`w-full mx-auto grid grid-cols-1 gap-8 mb-12 ${isTheaterMode ? 'lg:grid-cols-1 lg:max-w-full' : 'lg:grid-cols-1 lg:max-w-5xl'}`}>
+      <div className={`w-full mx-auto grid grid-cols-1 gap-8 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-2 lg:max-w-5xl'}`}>
         {/* Player Card */}
         <Card className="w-full bg-card text-card-foreground shadow-xl p-6">
           <CardHeader className="pb-4">
@@ -133,31 +129,36 @@ const Index = () => {
                 </a>
               </p>
             </div>
+          </CardContent>
+        </Card>
 
-            {/* Chat Links Section */}
-            <div className="mt-8 pt-4 border-t border-border">
-              <h3 className="text-2xl font-bold mb-4 text-primary-foreground text-center">
-                Общение в чате
-              </h3>
-              <p className="text-muted-foreground text-center mb-4">
-                Для полноценного участия в чате, пожалуйста, откройте его в новом окне:
-              </p>
-              <div className="flex justify-center gap-4 flex-wrap">
-                <a href={popoutChatUrls.twitch} target="_blank" rel="noopener noreferrer">
-                  <Button variant="secondary">Twitch Чат</Button>
-                </a>
-                <a href={popoutChatUrls.youtube} target="_blank" rel="noopener noreferrer">
-                  <Button variant="secondary">YouTube Чат</Button>
-                </a>
-                <a href={popoutChatUrls.goodgame} target="_blank" rel="noopener noreferrer">
-                  <Button variant="secondary">GoodGame Чат</Button>
-                </a>
-                <a href={popoutChatUrls.vkvideo} target="_blank" rel="noopener noreferrer">
-                  <Button variant="secondary">VK Video Чат</Button>
-                </a>
+        {/* Twitch Chat Card */}
+        <Card className="w-full bg-card text-card-foreground shadow-xl p-6">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-3xl font-bold text-center text-primary-foreground">
+              Чат Twitch
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="relative w-full pt-[150%] md:pt-[56.25%] bg-muted rounded-lg overflow-hidden"> {/* Adjusted aspect ratio for chat */}
+              <iframe
+                src={twitchChatEmbedUrl}
+                allowFullScreen
+                className="absolute top-0 left-0 w-full h-full border-0"
+                title="Twitch Chat"
+              ></iframe>
+              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
+                Чат Twitch
               </div>
-              <p className="text-sm text-muted-foreground mt-4 text-center">
-                Для YouTube чата может потребоваться ID конкретного стрима.
+            </div>
+            <div className="mt-4 text-center">
+              <a href={twitchPopoutChatUrl} target="_blank" rel="noopener noreferrer">
+                <Button variant="secondary" className="w-full">
+                  Открыть чат в новом окне
+                </Button>
+              </a>
+              <p className="text-sm text-muted-foreground mt-2">
+                Для полноценного участия в чате, возможно, потребуется войти в аккаунт Twitch.
               </p>
             </div>
           </CardContent>
