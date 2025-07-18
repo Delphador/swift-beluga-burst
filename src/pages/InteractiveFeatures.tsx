@@ -69,7 +69,7 @@ const InteractiveFeatures = () => {
           <HelpCircle className="h-8 w-8" /> Как это работает?
         </h2>
         <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Интерактивные фишки активируются через специальные сервисы, которые синхронизируются с моей трансляцией. Вы можете использовать для активации этих эффектов и влиять на происходящее в прямом эфире!
+          Интерактивные фишки активируются через специальные сервисы, которые синхронизируются с моей трансляцией. Вы можете использовать донаты для активации этих эффектов и влиять на происходящее в прямом эфире!
         </p>
         <div className="w-full max-w-3xl mx-auto h-64 bg-muted rounded-lg flex items-center justify-center text-muted-foreground text-xl border border-border shadow-md">
           [Место для видеоклипа, объясняющего, как работают фишки]
