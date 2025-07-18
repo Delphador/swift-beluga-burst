@@ -32,16 +32,14 @@ const Index = () => {
   const twitchPopoutChatUrl = "https://www.twitch.tv/popout/hellisium/chat";
 
   // Define classes for the root div
-  const rootDivClasses = cn(
-    "flex flex-col items-center justify-center",
-    isTheaterMode ? 'min-h-screen p-0' : 'min-h-[calc(100vh-160px)] bg-background text-foreground p-8'
-  );
+  const rootDivBaseClasses = "flex flex-col items-center justify-center";
+  const rootDivDynamicClasses = isTheaterMode ? 'min-h-screen p-0' : 'min-h-[calc(100vh-160px)] bg-background text-foreground p-8';
+  const rootDivClasses = cn(rootDivBaseClasses, rootDivDynamicClasses);
 
   // Define button classes using cn utility
-  const theaterModeButtonClasses = cn(
-    "text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10 flex items-center gap-2",
-    isTheaterMode ? 'absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm' : 'mb-12'
-  );
+  const theaterModeButtonBaseClasses = "text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10 flex items-center gap-2";
+  const theaterModeButtonDynamicClasses = isTheaterMode ? 'absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm' : 'mb-12';
+  const theaterModeButtonClasses = cn(theaterModeButtonBaseClasses, theaterModeButtonDynamicClasses);
 
   return (
     <div className={rootDivClasses}>
