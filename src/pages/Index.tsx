@@ -62,7 +62,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className={`w-full mx-auto grid grid-cols-1 gap-8 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'}`}> {/* Changed lg:grid-cols-2 to lg:grid-cols-[4fr_1fr] */}
+      <div className={`w-full mx-auto grid grid-cols-1 gap-8 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'}`}>
         {/* Player Card */}
         <Card className="w-full bg-card text-card-foreground shadow-xl p-6">
           <CardHeader className="pb-4">
@@ -91,7 +91,8 @@ const Index = () => {
                 GoodGame.ru
               </Button>
             </div>
-            <div className="relative w-full pt-[56.25%] bg-muted rounded-lg overflow-hidden">
+            {/* Changed pt-[56.25%] to fixed height h-[450px] for better player rendering */}
+            <div className="relative w-full h-[450px] bg-muted rounded-lg overflow-hidden">
               {selectedPlayer === "twitch" ? (
                 <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={false} />
               ) : (
