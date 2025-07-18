@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
-import { BellRing, Maximize2, Minimize2 } from "lucide-react";
+import { Maximize2, Minimize2 } from "lucide-react"; // Removed BellRing as it's no longer used
 import DonationWidget from "@/components/DonationWidget";
-// Removed StreamChat import
+// StreamChat import and usage removed
 
 const Index = () => {
   const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
@@ -67,7 +67,7 @@ const Index = () => {
         </div>
       </div>
 
-      <div className={`w-full mx-auto grid grid-cols-1 gap-8 mb-12 ${isTheaterMode ? 'lg:grid-cols-1 lg:max-w-full' : 'lg:grid-cols-1 lg:max-w-5xl'}`}> {/* Changed grid layout as chat is removed */}
+      <div className={`w-full mx-auto grid grid-cols-1 gap-8 mb-12 ${isTheaterMode ? 'lg:grid-cols-1 lg:max-w-full' : 'lg:grid-cols-1 lg:max-w-5xl'}`}>
         {/* Player Card */}
         <Card className="w-full bg-card text-card-foreground shadow-xl p-6">
           <CardHeader className="pb-4">
