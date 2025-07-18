@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Twitch, Youtube, Vk, Mail } from "lucide-react";
+import { Twitch, Youtube, Vkontakte, Mail } from "lucide-react"; // Changed Vk to Vkontakte
 
 const ContactsSocials = () => {
   return (
@@ -34,7 +34,7 @@ const ContactsSocials = () => {
               </a>
               <a href="https://vk.com/your_andrey_vk" target="_blank" rel="noopener noreferrer">
                 <Button className="w-full py-6 text-lg flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700">
-                  <Vk className="h-6 w-6" /> ВКонтакте
+                  <Vkontakte className="h-6 w-6" /> ВКонтакте
                 </Button>
               </a>
               {/* Add more social media links as needed */}
