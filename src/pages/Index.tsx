@@ -18,10 +18,17 @@ const Index = () => {
     goodgame: "https://goodgame.ru/player?id=your_goodgame_channel_id&autoplay=0", // Example GoodGame channel
   };
 
+  // Direct channel URLs for linking
+  const channelUrls = {
+    twitch: "https://www.twitch.tv/hellisium",
+    youtube: "https://www.youtube.com/your_youtube_stream_id", // Replace with actual YouTube channel URL
+    goodgame: "https://goodgame.ru/channel/your_goodgame_channel_id", // Replace with actual GoodGame channel URL
+  };
+
   return (
     <div className="min-h-[calc(100vh-160px)] flex flex-col items-center justify-center bg-background text-foreground p-8">
       <div className="text-center max-w-4xl mx-auto mb-12">
-        <h1 className="text-5xl font-extrabold mb-6 text-foreground leading-tight"> {/* Changed text-primary-foreground to text-foreground */}
+        <h1 className="text-5xl font-extrabold mb-6 text-foreground leading-tight">
           🔥 Добро пожаловать на канал HeLLisiuM!
         </h1>
         <p className="text-xl text-foreground mb-8">
@@ -33,11 +40,12 @@ const Index = () => {
               Расписание стримов
             </Button>
           </Link>
-          <Link to="/support">
+          {/* Изменена ссылка для кнопки 'Поддержать стримера' */}
+          <a href="https://www.donationalerts.com/r/hellisium" target="_blank" rel="noopener noreferrer">
             <Button size="lg" variant="outline" className="text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10">
               Поддержать стримера
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
 
@@ -80,6 +88,24 @@ const Index = () => {
             <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
               Здесь будет встроенный плеер {selectedPlayer.charAt(0).toUpperCase() + selectedPlayer.slice(1)}
             </div>
+          </div>
+          {/* Добавлены прямые ссылки на каналы под плеером */}
+          <div className="mt-4 text-center">
+            {selectedPlayer === "twitch" && (
+              <a href={channelUrls.twitch} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                Перейти на канал Twitch
+              </a>
+            )}
+            {selectedPlayer === "youtube" && (
+              <a href={channelUrls.youtube} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                Перейти на канал YouTube
+              </a>
+            )}
+            {selectedPlayer === "goodgame" && (
+              <a href={channelUrls.goodgame} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                Перейти на канал GoodGame.ru
+              </a>
+            )}
           </div>
           <div className="flex flex-col sm:flex-row justify-between items-center mt-4 gap-2">
             <p className="text-center sm:text-left text-muted-foreground">
