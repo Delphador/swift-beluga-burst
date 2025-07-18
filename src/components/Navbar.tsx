@@ -4,19 +4,19 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Gamepad, User, Calendar, ScrollText, Monitor, Heart, Sparkles, Mail, Video } from "lucide-react"; // Added Video icon
+import { Menu, Gamepad, User, Calendar, ScrollText, Monitor, Heart, Sparkles, Mail, Video } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const navLinks = [
   { name: "Главная", path: "/", icon: <Gamepad className="h-5 w-5" /> },
-  { name: "Об HeLLisiuM", path: "/about", icon: <User className="h-5 w-5" /> },
+  { name: "О HeLLisiuM", path: "/about", icon: <User className="h-5 w-5" /> }, {/* Changed 'Об HeLLisiuM' to 'О HeLLisiuM' */}
   { name: "Расписание", path: "/schedule", icon: <Calendar className="h-5 w-5" /> },
   { name: "Правила", path: "/rules", icon: <ScrollText className="h-5 w-5" /> },
   { name: "Сетап", path: "/setup", icon: <Monitor className="h-5 w-5" /> },
   { name: "Поддержка", path: "/support", icon: <Heart className="h-5 w-5" /> },
   { name: "Фишки", path: "/features", icon: <Sparkles className="h-5 w-5" /> },
   { name: "Контакты", path: "/contacts", icon: <Mail className="h-5 w-5" /> },
-  { name: "Топ-моменты", path: "/highlights", icon: <Video className="h-5 w-5" /> }, // New nav link
+  { name: "Топ-моменты", path: "/highlights", icon: <Video className="h-5 w-5" /> },
 ];
 
 const Navbar = () => {

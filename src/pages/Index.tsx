@@ -6,7 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { BellRing } from "lucide-react";
-import DonationWidget from "@/components/DonationWidget"; // Import the new DonationWidget
+import DonationWidget from "@/components/DonationWidget";
+import StreamChat from "@/components/StreamChat"; // Import the new StreamChat component
 
 const Index = () => {
   const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
@@ -23,7 +24,7 @@ const Index = () => {
         <h1 className="text-5xl font-extrabold mb-6 text-primary-foreground leading-tight">
           🔥 Добро пожаловать на канал HeLLisiuM!
         </h1>
-        <p className="text-xl text-muted-foreground mb-8">
+        <p className="text-xl text-foreground mb-8"> {/* Changed text-muted-foreground to text-foreground for readability */}
           Здесь мы вместе погружаемся в захватывающие игровые вселенные, делимся эмоциями и создаем незабываемые моменты.
         </p>
         <div className="flex justify-center gap-4 flex-wrap">
@@ -95,11 +96,13 @@ const Index = () => {
         </CardContent>
       </Card>
 
-      <div className="w-full max-w-4xl mx-auto grid md:grid-cols-3 gap-6 text-center">
+      <StreamChat /> {/* Integrated StreamChat component */}
+
+      <div className="w-full max-w-4xl mx-auto grid md:grid-cols-3 gap-6 text-center mt-12"> {/* Added mt-12 for spacing */}
         <Link to="/about">
           <Card className="bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Узнать об HeLLisiuM</CardTitle>
+              <CardTitle className="text-xl font-semibold">О HeLLisiuM</CardTitle> {/* Changed 'Узнать об HeLLisiuM' to 'О HeLLisiuM' */}
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">Моя история, увлечения и путь в стриминге.</p>
@@ -126,7 +129,7 @@ const Index = () => {
             </CardContent>
           </Card>
         </Link>
-        <Link to="/highlights"> {/* New link to Highlights Gallery */}
+        <Link to="/highlights">
           <Card className="bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
             <CardHeader>
               <CardTitle className="text-xl font-semibold">🎬 Топ-моменты</CardTitle>
@@ -138,7 +141,7 @@ const Index = () => {
         </Link>
       </div>
 
-      <DonationWidget /> {/* Add the new DonationWidget */}
+      <DonationWidget />
     </div>
   );
 };

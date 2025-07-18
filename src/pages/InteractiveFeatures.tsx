@@ -2,7 +2,8 @@
 
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Lightbulb, Mouse, Keyboard, Monitor } from "lucide-react";
+import { Lightbulb, Mouse, Keyboard, Monitor, Image } from "lucide-react"; // Added Image icon
+import { Button } from "@/components/ui/button"; // Import Button
 
 const interactiveFeatures = [
   {
@@ -10,24 +11,35 @@ const interactiveFeatures = [
     title: "Ломай мышку",
     description: "Заставляет курсор мыши Андрея двигаться хаотично или исчезать на короткое время. Идеально для моментов, когда нужна точность!",
     howTo: "Активируется за донат в 500 руб. или 5000 баллов канала.",
+    link: "https://streamengine.app/@hellisium",
   },
   {
     icon: <Keyboard className="h-8 w-8 text-primary" />,
     title: "Отключай клавиши",
     description: "Временно отключает случайные клавиши на клавиатуре Андрея. Попробуйте, если хотите увидеть его реакцию в самый неподходящий момент!",
     howTo: "Активируется за донат в 750 руб. или 7500 баллов канала.",
+    link: "https://streamengine.app/@hellisium",
   },
   {
     icon: <Monitor className="h-8 w-8 text-primary" />,
     title: "Переворачивай экран",
     description: "Переворачивает изображение на экране Андрея вверх ногами на несколько секунд. Гарантированный хаос!",
     howTo: "Активируется за донат в 1000 руб. или 10000 баллов канала.",
+    link: "https://streamengine.app/@hellisium",
   },
   {
     icon: <Lightbulb className="h-8 w-8 text-primary" />,
     title: "Смена освещения",
     description: "Изменяет цвет или яркость освещения в комнате Андрея. Создайте атмосферу или просто отвлеките его!",
     howTo: "Активируется за донат в 300 руб. или 3000 баллов канала.",
+    link: "https://streamengine.app/@hellisium",
+  },
+  {
+    icon: <Image className="h-8 w-8 text-primary" />, // Using Image icon for memes
+    title: "Отправь мемас на стрим",
+    description: "Отправьте свой любимый мем прямо на стрим Андрея! Удивите его и зрителей.",
+    howTo: "Активируется за донат в 200 руб. или 2000 баллов канала.",
+    link: "https://memealerts.com/hellisium",
   },
 ];
 
@@ -48,6 +60,11 @@ const InteractiveFeatures = () => {
             <CardContent className="flex-grow space-y-3 text-lg">
               <p>{feature.description}</p>
               <p className="text-sm text-muted-foreground italic">{feature.howTo}</p>
+              <a href={feature.link} target="_blank" rel="noopener noreferrer" className="block mt-4">
+                <Button className="w-full bg-primary hover:bg-primary/90">
+                  Активировать
+                </Button>
+              </a>
             </CardContent>
           </Card>
         ))}

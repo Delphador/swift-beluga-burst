@@ -3,7 +3,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Gem, Rocket, Crown, Twitch } from "lucide-react"; // Added Twitch icon
+import { CheckCircle2, Gem, Rocket, Crown, Twitch } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
 const SupportSubscription = () => {
@@ -56,13 +56,17 @@ const SupportSubscription = () => {
               Вы можете поддержать меня через следующие платформы:
             </p>
             <div className="flex flex-col gap-4">
-              <Button className="w-full py-6 text-lg bg-green-600 hover:bg-green-700">
-                Поддержать через DonationAlerts
-              </Button>
-              <Button className="w-full py-6 text-lg bg-purple-600 hover:bg-purple-700">
-                Поддержать через Boosty
-              </Button>
-              <a href="https://goodgame.ru/channel/HeLLisiuM/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.donationalerts.com/r/hellisium" target="_blank" rel="noopener noreferrer"> {/* Updated link */}
+                <Button className="w-full py-6 text-lg bg-green-600 hover:bg-green-700">
+                  Поддержать через DonationAlerts
+                </Button>
+              </a>
+              <a href="https://boosty.to/hellisium" target="_blank" rel="noopener noreferrer"> {/* Updated link */}
+                <Button className="w-full py-6 text-lg bg-purple-600 hover:bg-purple-700">
+                  Поддержать через Boosty
+                </Button>
+              </a>
+              <a href="https://goodgame.ru/HeLLisiuM/support" target="_blank" rel="noopener noreferrer"> {/* Updated link */}
                 <Button className="w-full py-6 text-lg bg-blue-800 hover:bg-blue-900">
                   Поддержать через GoodGame.ru
                 </Button>
