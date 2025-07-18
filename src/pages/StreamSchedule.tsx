@@ -4,8 +4,8 @@ import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
-import { Gamepad, Clock, Info } from "lucide-react"; // Added icons
-import { Progress } from "@/components/ui/progress"; // Import Progress component
+import { Gamepad, Clock, Info } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 
 const StreamSchedule = () => {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -18,7 +18,7 @@ const StreamSchedule = () => {
 
   return (
     <div className="container mx-auto p-8 min-h-[calc(100vh-160px)]">
-      <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">Расписание стримов</h1>
+      <h1 className="text-4xl font-bold text-center mb-10 text-foreground">Расписание стримов</h1> {/* Changed text-primary-foreground to text-foreground */}
       <div className="grid md:grid-cols-2 gap-8">
         <Card className="bg-card text-card-foreground shadow-lg">
           <CardHeader>

@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const AboutAndrey = () => {
   return (
     <div className="container mx-auto p-8 min-h-[calc(100vh-160px)]">
-      <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">О HeLLisiuM</h1> {/* Changed 'Об HeLLisiuM' to 'О HeLLisiuM' */}
+      <h1 className="text-4xl font-bold text-center mb-10 text-foreground">О HeLLisiuM</h1> {/* Changed text-primary-foreground to text-foreground */}
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <Card className="bg-card text-card-foreground shadow-lg">
           <CardHeader>

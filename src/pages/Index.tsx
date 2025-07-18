@@ -98,11 +98,11 @@ const Index = () => {
 
       <StreamChat /> {/* Integrated StreamChat component */}
 
-      <div className="w-full max-w-4xl mx-auto grid md:grid-cols-3 gap-6 text-center mt-12"> {/* Added mt-12 for spacing */}
+      <div className="w-full max-w-4xl mx-auto grid md:grid-cols-2 gap-6 text-center mt-12"> {/* Changed md:grid-cols-3 to md:grid-cols-2 */}
         <Link to="/about">
           <Card className="bg-card text-card-foreground shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">О HeLLisiuM</CardTitle> {/* Changed 'Узнать об HeLLisiuM' to 'О HeLLisiuM' */}
+              <CardTitle className="text-xl font-semibold">О HeLLisiuM</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-muted-foreground">Моя история, увлечения и путь в стриминге.</p>

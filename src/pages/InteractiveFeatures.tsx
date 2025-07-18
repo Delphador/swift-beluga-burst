@@ -41,7 +41,7 @@ const interactiveFeatures = [
 const InteractiveFeatures = () => {
   return (
     <div className="container mx-auto p-8 min-h-[calc(100vh-160px)]">
-      <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">Интерактивные фишки</h1>
+      <h1 className="text-4xl font-bold text-center mb-10 text-foreground">Интерактивные фишки</h1> {/* Changed text-primary-foreground to text-foreground */}
       <p className="text-xl text-center text-muted-foreground mb-12">
         Сделайте стрим еще веселее! Эти фишки позволяют вам влиять на игровой процесс и реакции Андрея.
       </p>
@@ -54,7 +54,6 @@ const InteractiveFeatures = () => {
             </CardHeader>
             <CardContent className="flex-grow space-y-3 text-lg">
               <p>{feature.description}</p>
-              {/* Removed feature.howTo */}
               <a href={feature.link} target="_blank" rel="noopener noreferrer" className="block mt-4">
                 <Button className="w-full bg-primary hover:bg-primary/90">
                   Активировать

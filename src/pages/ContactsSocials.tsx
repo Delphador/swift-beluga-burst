@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Twitch, Youtube, Link, Mail, Send, MessageSquare } from "lucide-react"; // Changed Discord to MessageSquare, Telegram to Send
+import { Twitch, Youtube, Link, Mail, Send, MessageSquare } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { toast } from "sonner"; // For success message
+import { toast } from "sonner";
 
 const ContactsSocials = () => {
   const handleSubmit = (e: React.FormEvent) => {
@@ -21,7 +21,7 @@ const ContactsSocials = () => {
 
   return (
     <div className="container mx-auto p-8 min-h-[calc(100vh-160px)]">
-      <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">Контакты и соцсети</h1>
+      <h1 className="text-4xl font-bold text-center mb-10 text-foreground">Контакты и соцсети</h1> {/* Changed text-primary-foreground to text-foreground */}
       <div className="grid md:grid-cols-2 gap-8">
         <Card className="bg-card text-card-foreground shadow-lg">
           <CardHeader>

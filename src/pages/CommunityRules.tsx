@@ -3,7 +3,7 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Info, ArrowRight, AlertTriangle } from "lucide-react"; // Changed HandRight to ArrowRight
+import { Info, ArrowRight, AlertTriangle } from "lucide-react";
 
 const CommunityRules = () => {
   const rules = [
@@ -16,7 +16,7 @@ const CommunityRules = () => {
 
   return (
     <div className="container mx-auto p-8 min-h-[calc(100vh-160px)]">
-      <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">📜 Правила сообщества</h1>
+      <h1 className="text-4xl font-bold text-center mb-10 text-foreground">📜 Правила сообщества</h1> {/* Changed text-primary-foreground to text-foreground */}
       <div className="grid md:grid-cols-1 gap-8">
         <Card className="bg-card text-card-foreground shadow-lg">
           <CardHeader>
@@ -29,7 +29,7 @@ const CommunityRules = () => {
             <ol className="list-decimal list-inside space-y-3">
               {rules.map((rule, index) => (
                 <li key={index} className="flex items-start gap-2">
-                  <ArrowRight className="h-5 w-5 text-primary flex-shrink-0 mt-1" /> {/* Changed HandRight to ArrowRight */}
+                  <ArrowRight className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                   <span>{rule}</span>
                 </li>
               ))}

@@ -16,7 +16,7 @@ const HighlightsGallery = () => {
 
   return (
     <div className="container mx-auto p-8 min-h-[calc(100vh-160px)]">
-      <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">🎬 Топ-моменты за месяц</h1>
+      <h1 className="text-4xl font-bold text-center mb-10 text-foreground">🎬 Топ-моменты за месяц</h1> {/* Changed text-primary-foreground to text-foreground */}
       <p className="text-xl text-center text-muted-foreground mb-12">
         Здесь собраны самые яркие и запоминающиеся моменты с моих стримов. Голосуйте за любимые!
       </p>

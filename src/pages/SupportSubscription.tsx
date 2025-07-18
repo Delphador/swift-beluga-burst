@@ -33,7 +33,7 @@ const SupportSubscription = () => {
 
   return (
     <div className="container mx-auto p-8 min-h-[calc(100vh-160px)]">
-      <h1 className="text-4xl font-bold text-center mb-10 text-primary-foreground">Поддержка и подписка</h1>
+      <h1 className="text-4xl font-bold text-center mb-10 text-foreground">Поддержка и подписка</h1> {/* Changed text-primary-foreground to text-foreground */}
       <div className="grid md:grid-cols-2 gap-8">
         <Card className="bg-card text-card-foreground shadow-lg">
           <CardHeader>
@@ -56,17 +56,17 @@ const SupportSubscription = () => {
               Вы можете поддержать меня через следующие платформы:
             </p>
             <div className="flex flex-col gap-4">
-              <a href="https://www.donationalerts.com/r/hellisium" target="_blank" rel="noopener noreferrer"> {/* Updated link */}
+              <a href="https://www.donationalerts.com/r/hellisium" target="_blank" rel="noopener noreferrer">
                 <Button className="w-full py-6 text-lg bg-green-600 hover:bg-green-700">
                   Поддержать через DonationAlerts
                 </Button>
               </a>
-              <a href="https://boosty.to/hellisium" target="_blank" rel="noopener noreferrer"> {/* Updated link */}
+              <a href="https://boosty.to/hellisium" target="_blank" rel="noopener noreferrer">
                 <Button className="w-full py-6 text-lg bg-purple-600 hover:bg-purple-700">
                   Поддержать через Boosty
                 </Button>
               </a>
-              <a href="https://goodgame.ru/HeLLisiuM/support" target="_blank" rel="noopener noreferrer"> {/* Updated link */}
+              <a href="https://goodgame.ru/HeLLisiuM/support" target="_blank" rel="noopener noreferrer">
                 <Button className="w-full py-6 text-lg bg-blue-800 hover:bg-blue-900">
                   Поддержать через GoodGame.ru
                 </Button>
