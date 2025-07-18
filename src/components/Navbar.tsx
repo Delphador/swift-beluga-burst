@@ -1,50 +1,57 @@
 "use client";
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom"; // Changed Link to NavLink for active styling
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, Gamepad, User, Calendar, ScrollText, Monitor, Heart, Sparkles, Mail } from "lucide-react"; // Added new icons
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const navLinks = [
-  { name: "Главная", path: "/" },
-  { name: "Об Андрее", path: "/about" },
-  { name: "Расписание", path: "/schedule" },
-  { name: "Правила", path: "/rules" },
-  { name: "Сетап", path: "/setup" },
-  { name: "Поддержка", path: "/support" },
-  { name: "Фишки", path: "/features" },
-  { name: "Контакты", path: "/contacts" },
+  { name: "Главная", path: "/", icon: <Gamepad className="h-5 w-5" /> },
+  { name: "Об Андрее", path: "/about", icon: <User className="h-5 w-5" /> },
+  { name: "Расписание", path: "/schedule", icon: <Calendar className="h-5 w-5" /> },
+  { name: "Правила", path: "/rules", icon: <ScrollText className="h-5 w-5" /> },
+  { name: "Сетап", path: "/setup", icon: <Monitor className="h-5 w-5" /> },
+  { name: "Поддержка", path: "/support", icon: <Heart className="h-5 w-5" /> },
+  { name: "Фишки", path: "/features", icon: <Sparkles className="h-5 w-5" /> },
+  { name: "Контакты", path: "/contacts", icon: <Mail className="h-5 w-5" /> },
 ];
 
 const Navbar = () => {
   const isMobile = useIsMobile();
 
   return (
-    <nav className="bg-background text-foreground p-4 shadow-md">
+    <nav className="bg-background text-foreground p-4 shadow-md sticky top-0 z-50"> {/* Added sticky, top-0, z-50 */}
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-primary-foreground">
+        <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-primary"> {/* Changed text-primary-foreground to text-primary */}
+          {/* Placeholder for logo */}
+          <img src="/placeholder-logo.png" alt="Андрей Стример Лого" className="h-8 w-8" /> {/* Added logo placeholder */}
           Андрей Стример
         </Link>
 
         {isMobile ? (
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="text-foreground"> {/* Ensure icon color is visible */}
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[250px] sm:w-[300px] bg-sidebar text-sidebar-foreground">
               <nav className="flex flex-col gap-4 pt-8">
                 {navLinks.map((link) => (
-                  <Link
+                  <NavLink
                     key={link.name}
                     to={link.path}
-                    className="text-lg font-medium hover:text-sidebar-primary transition-colors"
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 text-lg font-medium transition-colors ${
+                        isActive ? "text-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary"
+                      }`
+                    }
                   >
+                    {link.icon}
                     {link.name}
-                  </Link>
+                  </NavLink>
                 ))}
               </nav>
             </SheetContent>
@@ -52,13 +59,18 @@ const Navbar = () => {
         ) : (
           <div className="flex gap-6">
             {navLinks.map((link) => (
-              <Link
+              <NavLink
                 key={link.name}
                 to={link.path}
-                className="text-lg font-medium hover:text-primary transition-colors"
+                className={({ isActive }) =>
+                  `flex items-center gap-2 text-lg font-medium transition-colors ${
+                    isActive ? "text-primary" : "text-foreground hover:text-primary"
+                  }`
+                }
               >
+                {link.icon}
                 {link.name}
-              </Link>
+              </NavLink>
             ))}
           </div>
         )}
