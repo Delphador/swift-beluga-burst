@@ -43,12 +43,6 @@ const Index: React.FC<IndexProps> = ({ isTheaterMode, setIsTheaterMode }) => {
   const theaterModeButtonDynamicClasses = isTheaterMode ? 'absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm' : 'mb-12';
   const theaterModeButtonClasses = cn(theaterModeButtonBaseClasses, theaterModeButtonDynamicClasses);
 
-  // Классы для основного контейнера плеера и чата
-  const mainContentGridClasses = cn(
-    "w-full mx-auto grid grid-cols-1 gap-4 mb-12 transition-all duration-500 ease-in-out",
-    isTheaterMode ? 'lg:grid-cols-[7fr_3fr] lg:max-w-full lg:h-screen lg:mb-0' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'
-  );
-
   // Классы для контейнеров плеера и чата внутри сетки
   const playerChatContainerClasses = cn(
     "relative w-full h-full bg-muted rounded-lg overflow-hidden",
@@ -128,7 +122,10 @@ const Index: React.FC<IndexProps> = ({ isTheaterMode, setIsTheaterMode }) => {
           </ResizablePanel>
         </ResizablePanelGroup>
       ) : (
-        <div className={mainContentGridClasses}>
+        <div className={cn(
+          "w-full mx-auto grid grid-cols-1 gap-4 mb-12 transition-all duration-500 ease-in-out",
+          'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'
+        )}>
           {/* Player */}
           <Card className="w-full bg-card text-card-foreground shadow-xl p-4">
             <CardContent>
