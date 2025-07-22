@@ -3,8 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { useState } from "react"; // Import useState
-import Index from "./pages/Index";
+import React, { useState } from "react";
+import Index from "./pages/Index"; // Убеждаемся, что импорт корректен
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -20,7 +20,7 @@ import HighlightsGallery from "./pages/HighlightsGallery";
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [isTheaterMode, setIsTheaterMode] = useState(false); // State for theater mode
+  const [isTheaterMode, setIsTheaterMode] = useState(false);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -29,10 +29,10 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <div className="flex flex-col min-h-screen">
-            {!isTheaterMode && <Navbar />} {/* Conditionally render Navbar */}
+            {!isTheaterMode && <Navbar />}
             <main className="flex-grow">
               <Routes>
-                <Route path="/" element={<Index isTheaterMode={isTheaterMode} setIsTheaterMode={setIsTheaterMode} />} /> {/* Pass state to Index */}
+                <Route path="/" element={<Index isTheaterMode={isTheaterMode} setIsTheaterMode={setIsTheaterMode} />} />
                 <Route path="/about" element={<AboutAndrey />} />
                 <Route path="/schedule" element={<StreamSchedule />} />
                 <Route path="/rules" element={<CommunityRules />} />
@@ -45,7 +45,7 @@ const App = () => {
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
-            {!isTheaterMode && <Footer />} {/* Conditionally render Footer */}
+            {!isTheaterMode && <Footer />}
           </div>
         </BrowserRouter>
       </TooltipProvider>
