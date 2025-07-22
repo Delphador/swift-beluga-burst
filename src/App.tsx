@@ -14,42 +14,38 @@ import TechSetup from "./pages/TechSetup";
 import SupportSubscription from "./pages/SupportSubscription";
 import InteractiveFeatures from "./pages/InteractiveFeatures";
 import ContactsSocials from "./pages/ContactsSocials";
-import HighlightsGallery from "./pages/HighlightsGallery";
-import { useState } from "react";
+import HighlightsGallery from "./pages/HighlightsGallery"; // Import new page
 
 const queryClient = new QueryClient();
 
-const App = () => {
-  const [isTheaterMode, setIsTheaterMode] = useState(false);
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <div className="flex flex-col min-h-screen">
-            <Navbar isTheaterMode={isTheaterMode} />
-            <main className="flex-grow">
-              <Routes>
-                <Route path="/" element={<Index isTheaterMode={isTheaterMode} setIsTheaterMode={setIsTheaterMode} />} />
-                <Route path="/about" element={<AboutAndrey />} />
-                <Route path="/schedule" element={<StreamSchedule />} />
-                <Route path="/rules" element={<CommunityRules />} />
-                <Route path="/setup" element={<TechSetup />} />
-                <Route path="/support" element={<SupportSubscription />} />
-                <Route path="/features" element={<InteractiveFeatures />} />
-                <Route path="/contacts" element={<ContactsSocials />} />
-                <Route path="/highlights" element={<HighlightsGallery />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-};
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about" element={<AboutAndrey />} />
+              <Route path="/schedule" element={<StreamSchedule />} />
+              <Route path="/rules" element={<CommunityRules />} />
+              <Route path="/setup" element={<TechSetup />} />
+              <Route path="/support" element={<SupportSubscription />} />
+              <Route path="/features" element={<InteractiveFeatures />} />
+              <Route path="/contacts" element={<ContactsSocials />} />
+              <Route path="/highlights" element={<HighlightsGallery />} /> {/* New route */}
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;
