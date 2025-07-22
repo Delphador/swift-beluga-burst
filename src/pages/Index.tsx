@@ -8,35 +8,30 @@ import React, { useState } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import DonationWidget from "@/components/DonationWidget";
 import TwitchChatEmbed from "@/components/TwitchChatEmbed";
-import TwitchPlayerEmbed from "@/components/TwitchPlayerEmbed"; // Import the new player component
-import { cn } from "@/lib/utils"; // Import cn utility
+import TwitchPlayerEmbed from "@/components/TwitchPlayerEmbed";
+import { cn } from "@/lib/utils";
 
 const Index = () => {
-  const [selectedPlayer, setSelectedPlayer] = useState("twitch"); // Default to Twitch
-  const [isTheaterMode, setIsTheaterMode] = useState(false); // New state for theater mode
+  const [selectedPlayer, setSelectedPlayer] = useState("twitch");
+  const [isTheaterMode, setIsTheaterMode] = useState(false);
 
   const playerUrls = {
-    // Twitch player URL is now handled by TwitchPlayerEmbed component
-    youtube: "https://www.youtube.com/embed/your_youtube_stream_id?autoplay=0", // Example YouTube stream
-    goodgame: "https://goodgame.ru/player?id=your_goodgame_channel_id&autoplay=0", // Example GoodGame channel
+    youtube: "https://www.youtube.com/embed/your_youtube_stream_id?autoplay=0",
+    goodgame: "https://goodgame.ru/player?id=your_goodgame_channel_id&autoplay=0",
   };
 
-  // Direct channel URLs for linking
   const channelUrls = {
     twitch: "https://www.twitch.tv/hellisium",
-    youtube: "https://www.youtube.com/your_youtube_stream_id", // Replace with actual YouTube channel URL
-    goodgame: "https://goodgame.ru/channel/your_goodgame_channel_id", // Replace with actual GoodGame channel URL
+    youtube: "https://www.youtube.com/your_youtube_stream_id",
+    goodgame: "https://goodgame.ru/channel/your_goodgame_channel_id",
   };
 
-  // URL for opening Twitch chat in a new window/tab
   const twitchPopoutChatUrl = "https://www.twitch.tv/popout/hellisium/chat";
 
-  // Define classes for the root div
   const rootDivBaseClasses = "flex flex-col items-center justify-center";
   const rootDivDynamicClasses = isTheaterMode ? 'min-h-screen p-0' : 'min-h-[calc(100vh-160px)] bg-background text-foreground p-8';
   const rootDivClasses = cn(rootDivBaseClasses, rootDivDynamicClasses);
 
-  // Define button classes using cn utility
   const theaterModeButtonBaseClasses = "text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10 flex items-center gap-2";
   const theaterModeButtonDynamicClasses = isTheaterMode ? 'absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm' : 'mb-12';
   const theaterModeButtonClasses = cn(theaterModeButtonBaseClasses, theaterModeButtonDynamicClasses);
@@ -81,7 +76,7 @@ const Index = () => {
         {isTheaterMode ? (
           <div className="relative w-full h-full bg-muted rounded-none overflow-hidden">
             {selectedPlayer === "twitch" ? (
-              <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={true} /> {/* Autoplay in theater mode */}
+              <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={true} />
             ) : (
               <iframe
                 src={playerUrls[selectedPlayer as keyof typeof playerUrls]}
@@ -104,14 +99,14 @@ const Index = () => {
                 <Button
                   variant={selectedPlayer === "youtube" ? "default" : "outline"}
                   onClick={() => setSelectedPlayer("youtube")}
-                  disabled // Disable YouTube button for now as it's a placeholder
+                  disabled
                 >
                   YouTube
                 </Button>
                 <Button
                   variant={selectedPlayer === "goodgame" ? "default" : "outline"}
                   onClick={() => setSelectedPlayer("goodgame")}
-                  disabled // Disable GoodGame button for now as it's a placeholder
+                  disabled
                 >
                   GoodGame.ru
                 </Button>
