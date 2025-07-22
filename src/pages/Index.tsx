@@ -4,7 +4,7 @@ import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import React from "react"; // Removed useState as it's now passed via props
+import React, { useState } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import ThanksForGifts from "@/components/ThanksForGifts";
 import TwitchChatEmbed from "@/components/TwitchChatEmbed";
@@ -12,14 +12,15 @@ import TwitchPlayerEmbed from "@/components/TwitchPlayerEmbed";
 import GoodgamePlayerEmbed from "@/components/GoodgamePlayerEmbed";
 import GoodgameChatEmbed from "@/components/GoodgameChatEmbed";
 import { cn } from "@/lib/utils";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"; // Импортируем компоненты для изменения размера
 
 interface IndexProps {
   isTheaterMode: boolean;
   setIsTheaterMode: (mode: boolean) => void;
 }
 
-const Index: React.FC<IndexProps> = ({ isTheaterMode, setIsTheaterMode }) => { // Accept props
-  const [selectedPlayer, setSelectedPlayer] = React.useState("twitch"); // Keep local state for selected player
+const Index: React.FC<IndexProps> = ({ isTheaterMode, setIsTheaterMode }) => {
+  const [selectedPlayer, setSelectedPlayer] = React.useState("twitch");
 
   const playerUrls = {
     youtube: "https://www.youtube.com/embed/your_youtube_stream_id?autoplay=0",
@@ -89,26 +90,46 @@ const Index: React.FC<IndexProps> = ({ isTheaterMode, setIsTheaterMode }) => { /
         {isTheaterMode ? "Выйти из режима кинотеатра" : "Режим кинотеатра"}
       </Button>
 
-      <div className={mainContentGridClasses}>
-        {/* Player */}
-        {isTheaterMode ? (
-          <div className={playerChatContainerClasses}>
-            {selectedPlayer === "twitch" && (
-              <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={true} />
-            )}
-            {selectedPlayer === "youtube" && (
-              <iframe
-                src={playerUrls.youtube}
-                allowFullScreen
-                className="absolute top-0 left-0 w-full h-full border-0"
-                title="Featured Stream"
-              ></iframe>
-            )}
-            {selectedPlayer === "goodgame" && (
-              <GoodgamePlayerEmbed channel="HeLLisiuM" autoplay={true} />
-            )}
-          </div>
-        ) : (
+      {isTheaterMode ? (
+        <ResizablePanelGroup direction="horizontal" className="w-full h-screen">
+          <ResizablePanel defaultSize={70} minSize={50}>
+            <div className={playerChatContainerClasses}>
+              {selectedPlayer === "twitch" && (
+                <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={true} />
+              )}
+              {selectedPlayer === "youtube" && (
+                <iframe
+                  src={playerUrls.youtube}
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full border-0"
+                  title="Featured Stream"
+                ></iframe>
+              )}
+              {selectedPlayer === "goodgame" && (
+                <GoodgamePlayerEmbed channel="HeLLisiuM" autoplay={true} />
+              )}
+            </div>
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel defaultSize={30} minSize={20}>
+            <div className={playerChatContainerClasses}>
+              {selectedPlayer === "twitch" && (
+                <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
+              )}
+              {selectedPlayer === "goodgame" && (
+                <GoodgameChatEmbed channel="HeLLisiuM" />
+              )}
+              {selectedPlayer === "youtube" && (
+                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
+                  Чат YouTube недоступен для встраивания напрямую.
+                </div>
+              )}
+            </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      ) : (
+        <div className={mainContentGridClasses}>
+          {/* Player */}
           <Card className="w-full bg-card text-card-foreground shadow-xl p-4">
             <CardContent>
               <div className="flex justify-center gap-4 mb-6 flex-wrap">
@@ -181,24 +202,8 @@ const Index: React.FC<IndexProps> = ({ isTheaterMode, setIsTheaterMode }) => { /
               </div>
             </CardContent>
           </Card>
-        )}
 
-        {/* Chat */}
-        {isTheaterMode ? (
-          <div className={playerChatContainerClasses}>
-            {selectedPlayer === "twitch" && (
-              <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
-            )}
-            {selectedPlayer === "goodgame" && (
-              <GoodgameChatEmbed channel="HeLLisiuM" />
-            )}
-            {selectedPlayer === "youtube" && (
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
-                Чат YouTube недоступен для встраивания напрямую.
-              </div>
-            )}
-          </div>
-        ) : (
+          {/* Chat */}
           <Card className="w-full bg-card text-card-foreground shadow-xl p-4">
             <CardContent>
               <div className="relative w-full h-[670px] bg-muted rounded-lg overflow-hidden">
@@ -240,8 +245,8 @@ const Index: React.FC<IndexProps> = ({ isTheaterMode, setIsTheaterMode }) => { /
               </div>
             </CardContent>
           </Card>
-        )}
-      </div>
+        </div>
+      )}
 
       {!isTheaterMode && (
         <>
