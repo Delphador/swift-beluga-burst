@@ -4,18 +4,22 @@ import { MadeWithDyad } from "@/components/made-with-dyad";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react"; // Removed useState as it's now passed via props
 import { Maximize2, Minimize2 } from "lucide-react";
-import ThanksForGifts from "@/components/ThanksForGifts"; // Обновленный импорт
+import ThanksForGifts from "@/components/ThanksForGifts";
 import TwitchChatEmbed from "@/components/TwitchChatEmbed";
 import TwitchPlayerEmbed from "@/components/TwitchPlayerEmbed";
 import GoodgamePlayerEmbed from "@/components/GoodgamePlayerEmbed";
 import GoodgameChatEmbed from "@/components/GoodgameChatEmbed";
 import { cn } from "@/lib/utils";
 
-const Index = () => {
-  const [selectedPlayer, setSelectedPlayer] = useState("twitch");
-  const [isTheaterMode, setIsTheaterMode] = useState(false);
+interface IndexProps {
+  isTheaterMode: boolean;
+  setIsTheaterMode: (mode: boolean) => void;
+}
+
+const Index: React.FC<IndexProps> = ({ isTheaterMode, setIsTheaterMode }) => { // Accept props
+  const [selectedPlayer, setSelectedPlayer] = React.useState("twitch"); // Keep local state for selected player
 
   const playerUrls = {
     youtube: "https://www.youtube.com/embed/your_youtube_stream_id?autoplay=0",
