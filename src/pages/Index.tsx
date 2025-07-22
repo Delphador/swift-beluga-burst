@@ -38,6 +38,18 @@ const Index = () => {
   const theaterModeButtonDynamicClasses = isTheaterMode ? 'absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm' : 'mb-12';
   const theaterModeButtonClasses = cn(theaterModeButtonBaseClasses, theaterModeButtonDynamicClasses);
 
+  // Классы для основного контейнера плеера и чата
+  const mainContentGridClasses = cn(
+    "w-full mx-auto grid grid-cols-1 gap-4 mb-12 transition-all duration-500 ease-in-out",
+    isTheaterMode ? 'lg:grid-cols-[7fr_3fr] lg:max-w-full lg:h-screen lg:mb-0' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'
+  );
+
+  // Классы для контейнеров плеера и чата внутри сетки
+  const playerChatContainerClasses = cn(
+    "relative w-full h-full bg-muted rounded-lg overflow-hidden",
+    isTheaterMode ? "rounded-none" : "" // Убираем скругления в режиме кинотеатра
+  );
+
   return (
     <div className={rootDivClasses}>
       {!isTheaterMode && (
@@ -73,10 +85,10 @@ const Index = () => {
         {isTheaterMode ? "Выйти из режима кинотеатра" : "Режим кинотеатра"}
       </Button>
 
-      <div className={`w-full mx-auto grid grid-cols-1 gap-4 mb-12 ${isTheaterMode ? 'lg:grid-cols-[4fr_1fr] lg:max-w-full' : 'lg:grid-cols-[4fr_1fr] lg:max-w-5xl'}`}>
+      <div className={mainContentGridClasses}>
         {/* Player */}
         {isTheaterMode ? (
-          <div className="relative w-full h-full bg-muted rounded-none overflow-hidden">
+          <div className={playerChatContainerClasses}>
             {selectedPlayer === "twitch" && (
               <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={true} />
             )}
@@ -169,7 +181,7 @@ const Index = () => {
 
         {/* Chat */}
         {isTheaterMode ? (
-          <div className="relative w-full h-full bg-muted rounded-none overflow-hidden">
+          <div className={playerChatContainerClasses}>
             {selectedPlayer === "twitch" && (
               <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
             )}
