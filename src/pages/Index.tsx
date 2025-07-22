@@ -9,6 +9,8 @@ import { Maximize2, Minimize2 } from "lucide-react";
 import DonationWidget from "@/components/DonationWidget";
 import TwitchChatEmbed from "@/components/TwitchChatEmbed";
 import TwitchPlayerEmbed from "@/components/TwitchPlayerEmbed";
+import GoodgamePlayerEmbed from "@/components/GoodgamePlayerEmbed"; // Import Goodgame player
+import GoodgameChatEmbed from "@/components/GoodgameChatEmbed";   // Import Goodgame chat
 import { cn } from "@/lib/utils";
 
 const Index = () => {
@@ -16,17 +18,17 @@ const Index = () => {
   const [isTheaterMode, setIsTheaterMode] = useState(false);
 
   const playerUrls = {
-    youtube: "https://www.youtube.com/embed/your_youtube_stream_id?autoplay=0",
-    goodgame: "https://goodgame.ru/player?id=your_goodgame_channel_id&autoplay=0",
+    youtube: "https://www.youtube.com/embed/your_youtube_stream_id?autoplay=0", // Example YouTube stream
   };
 
   const channelUrls = {
     twitch: "https://www.twitch.tv/hellisium",
-    youtube: "https://www.youtube.com/your_youtube_stream_id",
-    goodgame: "https://goodgame.ru/channel/your_goodgame_channel_id",
+    youtube: "https://www.youtube.com/your_youtube_stream_id", // Replace with actual YouTube channel URL
+    goodgame: "https://goodgame.ru/channel/HeLLisiuM", // Actual Goodgame channel URL
   };
 
   const twitchPopoutChatUrl = "https://www.twitch.tv/popout/hellisium/chat";
+  const goodgamePopoutChatUrl = "https://goodgame.ru/chat/HeLLisiuM"; // Goodgame popout chat URL
 
   const rootDivBaseClasses = "flex flex-col items-center justify-center";
   const rootDivDynamicClasses = isTheaterMode ? 'min-h-screen p-0' : 'min-h-[calc(100vh-160px)] bg-background text-foreground p-8';
@@ -75,15 +77,19 @@ const Index = () => {
         {/* Player */}
         {isTheaterMode ? (
           <div className="relative w-full h-full bg-muted rounded-none overflow-hidden">
-            {selectedPlayer === "twitch" ? (
+            {selectedPlayer === "twitch" && (
               <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={true} />
-            ) : (
+            )}
+            {selectedPlayer === "youtube" && (
               <iframe
-                src={playerUrls[selectedPlayer as keyof typeof playerUrls]}
+                src={playerUrls.youtube}
                 allowFullScreen
                 className="absolute top-0 left-0 w-full h-full border-0"
                 title="Featured Stream"
               ></iframe>
+            )}
+            {selectedPlayer === "goodgame" && (
+              <GoodgamePlayerEmbed channel="HeLLisiuM" autoplay={true} />
             )}
           </div>
         ) : (
@@ -99,33 +105,36 @@ const Index = () => {
                 <Button
                   variant={selectedPlayer === "youtube" ? "default" : "outline"}
                   onClick={() => setSelectedPlayer("youtube")}
-                  disabled
+                  disabled // Disable YouTube button for now as it's a placeholder
                 >
                   YouTube
                 </Button>
                 <Button
                   variant={selectedPlayer === "goodgame" ? "default" : "outline"}
                   onClick={() => setSelectedPlayer("goodgame")}
-                  disabled
                 >
                   GoodGame.ru
                 </Button>
               </div>
               <div className="relative w-full h-[520px] bg-muted rounded-lg overflow-hidden">
-                {selectedPlayer === "twitch" ? (
+                {selectedPlayer === "twitch" && (
                   <TwitchPlayerEmbed channel="hellisium" parent={['localhost']} autoplay={false} />
-                ) : (
+                )}
+                {selectedPlayer === "youtube" && (
                   <>
                     <iframe
-                      src={playerUrls[selectedPlayer as keyof typeof playerUrls]}
+                      src={playerUrls.youtube}
                       allowFullScreen
                       className="absolute top-0 left-0 w-full h-full border-0"
                       title="Featured Stream"
                     ></iframe>
                     <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
-                      Здесь будет встроенный плеер {selectedPlayer.charAt(0).toUpperCase() + selectedPlayer.slice(1)}
+                      Здесь будет встроенный плеер YouTube
                     </div>
                   </>
+                )}
+                {selectedPlayer === "goodgame" && (
+                  <GoodgamePlayerEmbed channel="HeLLisiuM" autoplay={false} />
                 )}
               </div>
               <div className="mt-4 text-center">
@@ -161,22 +170,56 @@ const Index = () => {
         {/* Chat */}
         {isTheaterMode ? (
           <div className="relative w-full h-full bg-muted rounded-none overflow-hidden">
-            <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
+            {selectedPlayer === "twitch" && (
+              <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
+            )}
+            {selectedPlayer === "goodgame" && (
+              <GoodgameChatEmbed channel="HeLLisiuM" />
+            )}
+            {selectedPlayer === "youtube" && (
+              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
+                Чат YouTube недоступен для встраивания напрямую.
+              </div>
+            )}
           </div>
         ) : (
           <Card className="w-full bg-card text-card-foreground shadow-xl p-4">
             <CardContent>
               <div className="relative w-full h-[670px] bg-muted rounded-lg overflow-hidden">
-                <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
+                {selectedPlayer === "twitch" && (
+                  <TwitchChatEmbed channel="hellisium" parent={['localhost']} />
+                )}
+                {selectedPlayer === "goodgame" && (
+                  <GoodgameChatEmbed channel="HeLLisiuM" />
+                )}
+                {selectedPlayer === "youtube" && (
+                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-xl">
+                    Чат YouTube недоступен для встраивания напрямую.
+                  </div>
+                )}
               </div>
               <div className="mt-4 text-center">
-                <a href={twitchPopoutChatUrl} target="_blank" rel="noopener noreferrer">
-                  <Button variant="secondary" className="w-full">
-                    Открыть чат в новом окне
+                {selectedPlayer === "twitch" && (
+                  <a href={twitchPopoutChatUrl} target="_blank" rel="noopener noreferrer">
+                    <Button variant="secondary" className="w-full">
+                      Открыть чат Twitch в новом окне
+                    </Button>
+                  </a>
+                )}
+                {selectedPlayer === "goodgame" && (
+                  <a href={goodgamePopoutChatUrl} target="_blank" rel="noopener noreferrer">
+                    <Button variant="secondary" className="w-full">
+                      Открыть чат Goodgame в новом окне
+                    </Button>
+                  </a>
+                )}
+                {selectedPlayer === "youtube" && (
+                  <Button variant="secondary" className="w-full" disabled>
+                    Чат YouTube недоступен
                   </Button>
-                </a>
+                )}
                 <p className="text-sm text-muted-foreground mt-2">
-                  Для полноценного участия в чате, возможно, потребуется войти в аккаунт Twitch.
+                  Для полноценного участия в чате, возможно, потребуется войти в аккаунт соответствующей платформы.
                 </p>
               </div>
             </CardContent>
