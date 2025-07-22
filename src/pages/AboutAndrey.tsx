@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import ImageCarousel from "@/components/ImageCarousel"; // Импортируем новый компонент карусели
 
 const AboutAndrey = () => {
   return (
@@ -35,10 +36,8 @@ const AboutAndrey = () => {
           </CardContent>
         </Card>
         <div className="flex flex-col justify-center items-center gap-4">
-          {/* Placeholder for Andrey's photo carousel */}
-          <div className="w-full max-w-md h-64 bg-muted rounded-lg flex items-center justify-center text-muted-foreground text-xl">
-            [Карусель из 3-4 фото HeLLisiuM]
-          </div>
+          {/* Карусель для фото HeLLisiuM */}
+          <ImageCarousel />
           {/* Placeholder for a short video greeting */}
           <div className="w-full max-w-md h-48 bg-muted rounded-lg flex items-center justify-center text-muted-foreground text-xl">
             [Короткое видео-приветствие 30-60 сек]
