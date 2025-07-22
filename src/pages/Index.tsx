@@ -12,7 +12,7 @@ import TwitchPlayerEmbed from "@/components/TwitchPlayerEmbed";
 import GoodgamePlayerEmbed from "@/components/GoodgamePlayerEmbed";
 import GoodgameChatEmbed from "@/components/GoodgameChatEmbed";
 import { cn } from "@/lib/utils";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"; // Импортируем компоненты для изменения размера
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 
 interface IndexProps {
   isTheaterMode: boolean;
@@ -45,8 +45,8 @@ const Index: React.FC<IndexProps> = ({ isTheaterMode, setIsTheaterMode }) => {
 
   // Классы для контейнеров плеера и чата внутри сетки
   const playerChatContainerClasses = cn(
-    "relative w-full h-full bg-muted rounded-lg overflow-hidden",
-    isTheaterMode ? "rounded-none" : "" // Убираем скругления в режиме кинотеатра
+    "relative w-full h-full bg-muted", // Убраны rounded-lg и overflow-hidden
+    isTheaterMode ? "rounded-none" : "rounded-lg overflow-hidden" // Применяем только в обычном режиме
   );
 
   return (
