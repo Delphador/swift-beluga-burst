@@ -40,13 +40,15 @@ const Index: React.FC<IndexProps> = ({ isTheaterMode, setIsTheaterMode }) => {
   const rootDivClasses = cn(rootDivBaseClasses, rootDivDynamicClasses);
 
   const theaterModeButtonBaseClasses = "text-lg px-8 py-4 border-primary text-primary hover:bg-primary/10 flex items-center gap-2";
-  const theaterModeButtonDynamicClasses = isTheaterMode ? 'absolute top-4 right-4 z-50 bg-background/80 backdrop-blur-sm' : 'mb-12';
+  // Изменено: кнопка теперь в левом верхнем углу
+  const theaterModeButtonDynamicClasses = isTheaterMode ? 'absolute top-4 left-4 z-50 bg-background/80 backdrop-blur-sm' : 'mb-12';
   const theaterModeButtonClasses = cn(theaterModeButtonBaseClasses, theaterModeButtonDynamicClasses);
 
   // Классы для контейнеров плеера и чата внутри сетки
+  // В режиме кинотеатра эти классы будут минимальными, чтобы ResizablePanel управлял размером
   const playerChatContainerClasses = cn(
-    "relative w-full h-full bg-muted", // Убраны rounded-lg и overflow-hidden
-    isTheaterMode ? "rounded-none" : "rounded-lg overflow-hidden" // Применяем только в обычном режиме
+    "w-full h-full", // Базовые классы: занимают всю доступную ширину и высоту
+    !isTheaterMode && "bg-muted rounded-lg overflow-hidden" // Применяем только в обычном режиме
   );
 
   return (

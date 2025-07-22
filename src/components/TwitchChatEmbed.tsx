@@ -10,7 +10,7 @@ interface TwitchChatEmbedProps {
 
 const TwitchChatEmbed: React.FC<TwitchChatEmbedProps> = ({ channel, parent }) => {
   return (
-    <div className="relative w-full h-full bg-muted"> {/* Убраны rounded-lg и overflow-hidden */}
+    <div className="w-full h-full"> {/* Убраны relative, bg-muted, rounded-lg и overflow-hidden */}
       <TwitchChat
         channel={channel}
         parent={parent}

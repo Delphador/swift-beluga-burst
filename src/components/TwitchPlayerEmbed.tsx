@@ -12,7 +12,7 @@ interface TwitchPlayerEmbedProps {
 
 const TwitchPlayerEmbed: React.FC<TwitchPlayerEmbedProps> = ({ channel, parent, autoplay = false, muted = false }) => {
   return (
-    <div className="relative w-full h-full bg-muted rounded-lg overflow-hidden">
+    <div className="w-full h-full"> {/* Убраны relative, bg-muted, rounded-lg и overflow-hidden */}
       <TwitchPlayer
         channel={channel}
         parent={parent}
